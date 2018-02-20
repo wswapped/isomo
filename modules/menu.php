@@ -31,7 +31,7 @@
 	<nav class="menu">
 		<ul>
 			<li class="">
-	           <a href="index"><img class="logo" src="<?php echo get_file('isomo.jpg'); ?>" /></a>
+	           <a href="<?php echo get_file("") ?>"><img class="logo" src="<?php echo get_file('isomo.jpg'); ?>" /></a>
 	        </li>
 			<li class="active">
 				<a href="<?php echo get_file('index'); ?>">Home</a>
