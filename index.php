@@ -30,6 +30,80 @@
 			</div>
 		</div>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<div class="card-block">
+				    	<h4 class="card-title">Primary 6</h4>
+				    	<p class="card-text text-muted">Get papers to help prepare for Primary Leaving Exam.</p>
+				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<div class="card-block">
+				    	<h4 class="card-title">Senior 3</h4>
+				    	<p class="card-text text-muted">Want to jump into path to your career, we are here to help.</p>
+				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<div class="card-block">
+				    	<h4 class="card-title">Senior 6</h4>
+				    	<p class="card-text text-muted">Preparing to leaving secondary school get help here.</p>
+				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				  	</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	<div class="mt-5"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/driving.jpg" alt="Primary papers">
+					<div class="card-block">
+				    	<h4 class="card-title">Driving test</h4>
+				    	<p class="card-text text-muted">Ready to take driving test, get papers to help you to pass.</p>
+				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/amategeko.jpg" alt="Amategeko y'umuhanda">
+					<div class="card-block">
+				    	<h4 class="card-title">Amategeko</h4>
+				    	<p class="card-text text-muted">Amategeko.</p>
+				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				  	</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top intro-card-img" src="img/scholarship.png" alt="Primary papers">
+					<div class="card-block">
+				    	<h4 class="card-title">Scholarship</h4>
+				    	<p class="card-text text-muted">Access thousands of scholarships.</p>
+				    	<a href="#" class="btn btn-primary pull-right">View scholarships</a>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<footer>
+			Isomo technology ltd. <?php echo date('Y'); ?>
+		</footer>
+	</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="js/jquery.slim.min.js"></script>

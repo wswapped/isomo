@@ -21,8 +21,7 @@
 		<div class="page">
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="card">
-						
+					<div class="card">						
 						<div class="card-block">
 							<img class="about-img img-responsive" src="img/isomo-award.jpg" alt="Isomo imbuto award">
 							<ul class="list-group">
@@ -32,7 +31,17 @@
 							</ul>
 						</div>
 					</div>
-					
+					<div class="card">
+						<div class="card-block">
+							<h3 class="card-title">Our Location</h3>
+							<!-- <div id="map" style="min-height: 600px">
+								
+							</div> -->
+							<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAAa1K0Q8xIXswQC7uCMrbvwYi2CcSTTiU&q=ISOMO+TECHNOLOGY+LTD" allowfullscreen>
+</iframe>
+						</div>
+					</div>
+										
 				</div>
 				<div class="col-sm-8">
 					<div class="card">
@@ -64,11 +73,28 @@
 		</div>
 	</div>
 	</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="js/jquery.slim.min.js"></script>
 <script type="text/javascript" src="js/tether.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript">
+	function initMap() {
+        var isomolocation = {lat: -1.953084, lng: 30.092948};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: isomolocation
+        });
+        var marker = new google.maps.Marker({
+          position: isomolocation,
+          map: map
+        });
+      }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAa1K0Q8xIXswQC7uCMrbvwYi2CcSTTiU&callback=initMap">
+</script>
 </body>
 </html>

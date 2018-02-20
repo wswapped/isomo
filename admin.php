@@ -91,8 +91,11 @@
 							    <label for="fileup">FIle</label>
 							    <input type="file" name="file" class="form-control" id="fileup" placeholder="placeholder">
 							</div>
+							<div class="form-group">
+							    <label for="fileup">Paper year</label>
+							    <input type="number" min="1900" max="<?php echo date('Y'); ?>" name="year" class="form-control" id="fileup" placeholder="year">
+							</div>
 							<input type="hidden" name="subt" value="jjsjsnjsdnjsndjsndsjdnsjdnsjdnsj">
-							<input type="hidden" name="year" value="2015">
 							<button type="submit" class="btn btn-primary">Upload</button>
 						</form>
 					</div>
