@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ISOMO Technology</title>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="shortcut icon" href="isomo.jpg">
-	<!--Google -Fonts-->
-	<link href='https://fonts.googleapis.com/css?family=Sintony:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
-	<!--Font-awsome-->
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-	<!-- Custom style -->
-	<link rel="stylesheet" href="css/style.css">
-
+	<?php
+		$title = "Papers";
+		include "functions.php";
+		include "modules/head.php";
+	?>
 </head>
 <body>
 	<?php include "modules/menu.php"; ?>
@@ -99,16 +93,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid">
-		<footer>
-			Isomo technology ltd. <?php echo date('Y'); ?>
-		</footer>
-	</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="js/jquery.slim.min.js"></script>
-<script type="text/javascript" src="js/tether.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/js.js"></script>
+	<?php
+		include_once "modules/footer.php";
+	?>
 </body>
 </html>

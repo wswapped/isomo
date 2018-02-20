@@ -121,6 +121,17 @@ display:none;
 .xs-menu-cont > a:hover{
  cursor: pointer;
 }
+.drop-down:hover {
+    margin-bottom: 300px;
+}
+.container-fluid.ft-container {
+    padding: 0;
+}
+footer {
+    background: #000;
+    padding: 2%;
+    color: #eee;
+}
   
 .xs-menu li {
 color: #fff;
