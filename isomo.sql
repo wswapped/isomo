@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2018 at 12:51 PM
+-- Generation Time: Feb 24, 2018 at 11:09 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -29,17 +29,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `levels` (
-  `name` varchar(32) NOT NULL
+  `name` varchar(32) NOT NULL,
+  `printname` int(11) DEFAULT NULL,
+  `short_intro` text,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `levels`
 --
 
-INSERT INTO `levels` (`name`) VALUES
-('P6'),
-('S3'),
-('S6');
+INSERT INTO `levels` (`name`, `printname`, `short_intro`, `description`) VALUES
+('P6', NULL, NULL, NULL),
+('S3', NULL, NULL, NULL),
+('S6', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -50,7 +53,6 @@ INSERT INTO `levels` (`name`) VALUES
 CREATE TABLE `papers` (
   `id` int(11) NOT NULL,
   `subject` int(11) NOT NULL,
-  `level` varchar(32) NOT NULL,
   `file` varchar(1024) NOT NULL,
   `year` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -60,9 +62,28 @@ CREATE TABLE `papers` (
 -- Dumping data for table `papers`
 --
 
-INSERT INTO `papers` (`id`, `subject`, `level`, `file`, `year`, `date`) VALUES
-(1, 1, '', '15186903381.pdf', 2015, '2018-02-15 10:25:38'),
-(2, 1, '', '15186906381.pdf', 2017, '2018-02-15 10:30:38');
+INSERT INTO `papers` (`id`, `subject`, `file`, `year`, `date`) VALUES
+(1, 1, '15186903381.pdf', 2015, '2018-02-15 10:25:38'),
+(2, 2, '15186906381.pdf', 2017, '2018-02-20 08:40:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `paper_types`
+--
+
+CREATE TABLE `paper_types` (
+  `id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `paper_types`
+--
+
+INSERT INTO `paper_types` (`id`, `name`, `description`) VALUES
+(1, 'national_exams', 'For academics, from primary to secondary school');
 
 -- --------------------------------------------------------
 
@@ -72,17 +93,16 @@ INSERT INTO `papers` (`id`, `subject`, `level`, `file`, `year`, `date`) VALUES
 
 CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `level` varchar(32) NOT NULL
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`, `level`) VALUES
-(1, 'Mathematics', ''),
-(2, 'Physics', '');
+INSERT INTO `subjects` (`id`, `name`) VALUES
+(1, 'Mathematics'),
+(2, 'Physics');
 
 -- --------------------------------------------------------
 
@@ -101,7 +121,7 @@ CREATE TABLE `subject_levels` (
 --
 
 INSERT INTO `subject_levels` (`id`, `subject`, `level`) VALUES
-(1, 1, 'S6'),
+(1, 1, 'P6'),
 (2, 1, 'S3');
 
 --
@@ -118,6 +138,12 @@ ALTER TABLE `levels`
 -- Indexes for table `papers`
 --
 ALTER TABLE `papers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `paper_types`
+--
+ALTER TABLE `paper_types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -141,6 +167,12 @@ ALTER TABLE `subject_levels`
 --
 ALTER TABLE `papers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `paper_types`
+--
+ALTER TABLE `paper_types`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subjects`

@@ -43,7 +43,7 @@
 					<div class="row">
 						<div class="col-md-3">
 							<span class="left-images">
-							<img class="img img-responsive" src="img/exam_qa.jpg">
+							<img class="img img-responsive" src="<?php echo get_file("img/exam_qa.jpg") ?>">
 							<p>Most Popular Exam Resources</p>
 						</div>						
 						<div class="col-md-3">

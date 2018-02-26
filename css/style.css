@@ -203,6 +203,9 @@ clear:both;
     max-width: 100%;
 
 }
+.page-title {
+    font-size: 1.7em;
+}
 .intro-card-img {
     height: 200px;
 }

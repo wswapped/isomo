@@ -28,31 +28,32 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card">
-					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<a href="<?php echo get_file('papers/p6') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers"></a>		
 					<div class="card-block">
 				    	<h4 class="card-title">Primary 6</h4>
 				    	<p class="card-text text-muted">Get papers to help prepare for Primary Leaving Exam.</p>
-				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				    	<a href="<?php echo get_file('papers/p6') ?>" class="btn btn-primary pull-right">Get papers</a>
 				  	</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<a href="<?php echo get_file('papers/s3') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers"></a>
+					
 					<div class="card-block">
 				    	<h4 class="card-title">Senior 3</h4>
 				    	<p class="card-text text-muted">Want to jump into path to your career, we are here to help.</p>
-				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				    	<a href="<?php echo get_file('papers/s3') ?>" class="btn btn-primary pull-right">Get papers</a>
 				  	</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers">
+					<a href="<?php echo get_file('papers/s6') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Secondary 6 papers"></a>					
 					<div class="card-block">
 				    	<h4 class="card-title">Senior 6</h4>
 				    	<p class="card-text text-muted">Preparing to leaving secondary school get help here.</p>
-				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				    	<a href="<?php echo get_file('papers/s6') ?>" class="btn btn-primary pull-right">Get papers</a>
 				  	</div>
 				</div>
 			</div>			

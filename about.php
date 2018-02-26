@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php
+	include_once "functions.php"
+	
+	?>
 	<title>About | ISOMO Technology</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="shortcut icon" href="isomo.jpg">
@@ -16,6 +20,7 @@
 <body>
 	<?php
 		include "modules/menu.php";
+
 	?>
 	<div class="container">
 		<div class="page">

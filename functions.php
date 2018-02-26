@@ -42,6 +42,8 @@
 		//Getting papers based on their levels
 		global $db;
 
+		$level = strtoupper($level);
+
 		$sql = "SELECT * FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subject_levels.level = \"$level\" ";
 		$query = $db->query($sql) or die("error getting papers $db->error");
 		$papers = array();
