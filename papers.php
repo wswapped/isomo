@@ -65,6 +65,11 @@
 				<?php
 			}else if($spage =='get'){
 				//Here want to display a paper
+				$papername =  $parts[1];
+				$paper_parts = explode("_", $papername);
+				var_dump($paper_parts);
+
+				//Getting this paper
 				?>
 					<div class="container">
 						<div class="row">
