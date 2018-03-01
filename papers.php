@@ -54,7 +54,7 @@
 										$paper = $papers[$n];
 										$pname = $paper['level']." $paper[name] ".$paper['year'];
 										?>
-											<li class="list-group-item"><?php echo $pname ?></li>
+											<li class="list-group-item"><a href="get/<?php echo str_ireplace(" ", "_", strtolower($pname)) ?>"><?php echo $pname ?></a></li>
 										<?php
 									}
 								?>
