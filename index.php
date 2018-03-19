@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php
-		$title = "Papers";
+		$title = "Welcome";
 		include "functions.php";
 		include "modules/head.php";
 	?>
@@ -38,7 +38,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<a href="<?php echo get_file('papers/s3') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers"></a>
+					<a href="<?php echo get_file('papers/s3') ?>"><img class="card-img-top intro-card-img" src="img/olevel.png" alt="Senior 3 papers"></a>
 					
 					<div class="card-block">
 				    	<h4 class="card-title">Senior 3</h4>
@@ -49,7 +49,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<a href="<?php echo get_file('papers/s6') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Secondary 6 papers"></a>					
+					<a href="<?php echo get_file('papers/s6') ?>"><img class="card-img-top intro-card-img" src="img/final.jpg" alt="Secondary 6 papers"></a>					
 					<div class="card-block">
 				    	<h4 class="card-title">Senior 6</h4>
 				    	<p class="card-text text-muted">Preparing to leaving secondary school get help here.</p>
@@ -64,20 +64,22 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="card">
-					<img class="card-img-top intro-card-img" src="img/driving.jpg" alt="Primary papers">
+					<a href="<?php echo get_file('driving_theory_exams') ?>"><img class="card-img-top intro-card-img" src="img/driving.jpg" alt="Driving theory exams"></a>
+					
 					<div class="card-block">
-				    	<h4 class="card-title">Driving test</h4>
+				    	<h4 class="card-title">Driving theory exams</h4>
 				    	<p class="card-text text-muted">Ready to take driving test, get papers to help you to pass.</p>
-				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
+				    	<a href="driving_theory_exams" class="btn btn-primary pull-right">Get papers</a>
 				  	</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="card">
-					<img class="card-img-top intro-card-img" src="img/amategeko.jpg" alt="Amategeko y'umuhanda">
+					<a href="<?php echo get_file('traffic_rules') ?>"><img class="card-img-top intro-card-img" src="img/amategeko.jpg" alt="Amategeko y'umuhanda"></a>
+					
 					<div class="card-block">
-				    	<h4 class="card-title">Amategeko</h4>
-				    	<p class="card-text text-muted">Amategeko.</p>
+				    	<h4 class="card-title">Amategeko y'umuhanda</h4>
+				    	<p class="card-text text-muted">Bona amategeko y'umuhanda atandukanye yagufasha mu kwiga witegura ikizami.</p>
 				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
 				  	</div>
 				</div>

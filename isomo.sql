@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2018 at 11:09 PM
+-- Generation Time: Mar 19, 2018 at 09:25 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -25,12 +25,44 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `name` varchar(256) DEFAULT NULL,
+  `username` varchar(128) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `username`, `password`, `date_created`) VALUES
+(1, 'SHYAKA James', 'shyaka', 'shyaka1', '2018-03-06 03:42:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `id` int(11) NOT NULL,
+  `file` varchar(1024) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `levels`
 --
 
 CREATE TABLE `levels` (
   `name` varchar(32) NOT NULL,
-  `printname` int(11) DEFAULT NULL,
+  `printname` varchar(128) DEFAULT NULL,
   `short_intro` text,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -40,9 +72,9 @@ CREATE TABLE `levels` (
 --
 
 INSERT INTO `levels` (`name`, `printname`, `short_intro`, `description`) VALUES
-('P6', NULL, NULL, NULL),
-('S3', NULL, NULL, NULL),
-('S6', NULL, NULL, NULL);
+('P6', 'Primary 6', 'Papers for primary leaving students', NULL),
+('S3', 'Senior 3', NULL, NULL),
+('S6', 'Senior 6', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -55,6 +87,8 @@ CREATE TABLE `papers` (
   `subject` int(11) NOT NULL,
   `file` varchar(1024) NOT NULL,
   `year` int(11) NOT NULL,
+  `done_date` date DEFAULT NULL COMMENT 'The date when the exam was done',
+  `answers` int(11) DEFAULT NULL COMMENT 'references id for answers',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -62,28 +96,9 @@ CREATE TABLE `papers` (
 -- Dumping data for table `papers`
 --
 
-INSERT INTO `papers` (`id`, `subject`, `file`, `year`, `date`) VALUES
-(1, 1, '15186903381.pdf', 2015, '2018-02-15 10:25:38'),
-(2, 2, '15186906381.pdf', 2017, '2018-02-20 08:40:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `paper_types`
---
-
-CREATE TABLE `paper_types` (
-  `id` int(11) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `description` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `paper_types`
---
-
-INSERT INTO `paper_types` (`id`, `name`, `description`) VALUES
-(1, 'national_exams', 'For academics, from primary to secondary school');
+INSERT INTO `papers` (`id`, `subject`, `file`, `year`, `done_date`, `answers`, `date`) VALUES
+(1, 1, 'store_papers/15186903381.pdf', 2015, NULL, NULL, '2018-03-01 22:01:54'),
+(2, 3, 'store_papers/15186906381.pdf', 2017, '2018-03-22', 1, '2018-03-04 07:22:40');
 
 -- --------------------------------------------------------
 
@@ -93,16 +108,21 @@ INSERT INTO `paper_types` (`id`, `name`, `description`) VALUES
 
 CREATE TABLE `subjects` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL
+  `name` varchar(128) NOT NULL,
+  `type` int(11) DEFAULT NULL,
+  `language` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`id`, `name`) VALUES
-(1, 'Mathematics'),
-(2, 'Physics');
+INSERT INTO `subjects` (`id`, `name`, `type`, `language`) VALUES
+(1, 'Mathematics', NULL, 'en'),
+(2, 'Physics', NULL, 'en'),
+(3, 'Driving theory', 2, 'en'),
+(4, 'Ikizami cya gutwara cyanditse', 2, 'kin'),
+(5, 'Driving theory', 2, 'fr');
 
 -- --------------------------------------------------------
 
@@ -124,9 +144,42 @@ INSERT INTO `subject_levels` (`id`, `subject`, `level`) VALUES
 (1, 1, 'P6'),
 (2, 1, 'S3');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject_type`
+--
+
+CREATE TABLE `subject_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject_type`
+--
+
+INSERT INTO `subject_type` (`id`, `name`, `description`) VALUES
+(1, 'national_exams', 'For academics, from primary to secondary school'),
+(2, 'driving_exam', 'Driving theory exam'),
+(3, 'traffic_rules', 'traffic rules');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `levels`
@@ -138,12 +191,6 @@ ALTER TABLE `levels`
 -- Indexes for table `papers`
 --
 ALTER TABLE `papers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `paper_types`
---
-ALTER TABLE `paper_types`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -159,8 +206,26 @@ ALTER TABLE `subject_levels`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subject_type`
+--
+ALTER TABLE `subject_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `papers`
@@ -169,22 +234,22 @@ ALTER TABLE `papers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `paper_types`
---
-ALTER TABLE `paper_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subject_levels`
 --
 ALTER TABLE `subject_levels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `subject_type`
+--
+ALTER TABLE `subject_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

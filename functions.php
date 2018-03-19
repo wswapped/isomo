@@ -12,7 +12,7 @@
 	}
 	function get_subjects($level = ""){
 		global $db;
-		$sql = "SELECT * FROM subjects WHERE level LIKE \"%$level\" ";
+		$sql = "SELECT * FROM subjects JOIN subject_levels as l ON l.subject = subjects.id WHERE level LIKE \"%$level\" ";
 
 		$query = $db->query($sql);
 		$subjects = array();
@@ -38,6 +38,11 @@
 		$file .= "$filename";
 		return $file; 
 	}
+	function page_parts(){
+		$cpage = trim($_SERVER['REQUEST_URI'], "/");
+		$cpage = trim($cpage, "/");
+		return explode("/", $cpage);
+	}
 	function level_papers($level){
 		//Getting papers based on their levels
 		global $db;
@@ -51,6 +56,31 @@
 			$papers[] = $data;
 		}
 
+		return $papers;
+	}
+	function get_paper_types(){
+		//function return types possible for papers
+		global $db;
+
+		$query = $db->query("SELECT * FROM subject_type");
+		$types = array();
+
+		while ($data = $query->fetch_assoc()) {
+			$data['pname'] = ucwords(str_ireplace("_", " ", $data['name'])); //print name
+			$types[] = $data;
+		}
+		return $types;
+	}
+	function category_papers($category){
+		//returns the papers in a category
+		global $db;
+
+		$query = $db->query("SELECT * FROM papers JOIN 	subjects ON papers.subject = subjects.id JOIN subject_type ON subjects.type = subject_type.id WHERE subject_type.name = \"$category\" ") or die("Cant get cat papers $db->error");
+
+		$papers = array();
+		while ($data = $query->fetch_assoc()) {
+			$papers[] = $data;
+		}
 		return $papers;
 	}
 ?>

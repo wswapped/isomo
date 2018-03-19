@@ -1,6 +1,10 @@
-RewriteEngine on 
+RewriteEngine on
+RewriteRule ^papers papers.php [NC,L]
+RewriteRule ^driving_theory_exams driving_theory_exams.php [NC,L]
+
+RewriteRule ^traffic_rules traffic_rules.php [NC,L]
+
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]
-
-RewriteRule ^papers papers.php [NC,L]
