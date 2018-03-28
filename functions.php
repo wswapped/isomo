@@ -75,7 +75,7 @@
 		//returns the papers in a category
 		global $db;
 
-		$query = $db->query("SELECT * FROM papers JOIN 	subjects ON papers.subject = subjects.id JOIN subject_type ON subjects.type = subject_type.id WHERE subject_type.name = \"$category\" ") or die("Cant get cat papers $db->error");
+		$query = $db->query("SELECT *, subjects.name as subjectname FROM papers JOIN 	subjects ON papers.subject = subjects.id JOIN subject_type ON subjects.type = subject_type.id WHERE subject_type.name = \"$category\" ") or die("Cant get cat papers $db->error");
 
 		$papers = array();
 		while ($data = $query->fetch_assoc()) {

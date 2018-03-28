@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <?php
-  $title = "Papers";
+  $title = "Add paper";
   include_once 'modules/head.php';
   $languages = array('kin'=>'Ikinyarwanda', 'en'=>'English', 'fr'=>'France');
   ?>
@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
   <link href="asset/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/select2.min.css"/>
   <!-- end: Css -->
 </head>
 
@@ -38,9 +39,9 @@
                <div class="panel box-shadow-none content-header">
                   <div class="panel-body">
                     <div class="col-md-12">
-                        <h3 class="animated fadeInLeft">Papers</h3>
+                        <h3 class="animated fadeInLeft">Add Paper</h3>
                         <p class="animated fadeInDown">
-                          Here are details on papers
+                          Provide information for new paper
                         </p>
                     </div>
                   </div>
@@ -50,6 +51,7 @@
                   <div class="panel">
                     <?php
                       $paper_type = $_GET['type']??"";
+                      
                       $papers_conf = array('ne'=>'national_exams', 'dte'=>'driving_exam', 'tr'=>'traffic_rules');
 
                       $cat_papers = category_papers($papers_conf[$paper_type]);
@@ -59,36 +61,52 @@
                     ?>
                     <div class="panel-heading"><h3><?php echo $paper_cat_name; ?></h3></div>
                     <div class="panel-body">
-                      <div class="responsive-table">
-                      <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                          <th>Subject</th>
-                          <th>Subscribers</th>
-                          <th>View more</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php 
-                          for($n=0; $n<count($cat_papers); $n++){
-                            $paper = $cat_papers[$n];
-                            ?>
-                              <tr>
-                                <td><?php echo $paper['name']; ?></td>
-                                <td><?php echo $paper['subjectname']; ?></td>
-                                <td>0</td>
-                                <td><span><i class="fa-home fa fa-2x"></i></span></td>
-                              </tr>
+
+                      <form class="cmxform" id="signupForm" method="get" action="" novalidate="novalidate">
+                          <div class="col-md-6">
+
                             <?php
-                          }
-                        ?>
-                        
-                      </tbody>
-                        </table>
-                      </div>
-                  </div>
-                  <a class="btn btn-primary btn-a" href="add_paper?type=<?php echo $paper_type; ?>"><span class="fa fa-2x fa-plus"></span></a>
+                              //subject types and subject
+                              $query = $db->query("SELECT *, s.name as subjectname FROM subjects as s JOIN subject_levels as l ON s.id  = l.subject ") or die("Error $db->error");
+                              $subj = array();
+                              while ($data = $query->fetch_assoc()) {
+                                $subj[$data['level']][] = $data;                                
+                              }
+                            ?>
+
+
+                            <div class="form-group">
+                              <select class="select2-A">
+                                <?php
+                                  foreach ($subj as $key => $subjects ) {
+                                    ?>
+                                      <optgroup label="<?php echo $key; ?>">
+                                        <?php
+                                          foreach ($subjects as $key => $subj_det) {
+                                            echo "<option value=''>$subj_det[subjectname]</option>";
+                                          }
+                                        ?>
+                                      </optgroup>
+                                    <?php
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                            <div class="form-group form-cond" data-for="national_exams" data-role='year'>
+                              <label for="fileup">Paper year</label>
+                              <input type="number" min="1900" max="<?php echo date('Y'); ?>" name="year" class="form-control" id="fileup" placeholder="year">
+                            </div>
+                          </div>                 
+                          <div class="col-md-12">
+                              <div class="form-group form-animate-checkbox">
+                                  <input type="checkbox" class="checkbox valid" id="validate_agree" name="validate_agree" aria-required="true" aria-describedby="validate_agree-error">
+                                  <label>Please agree to our policy</label>
+                              <em id="validate_agree-error" class="error"></em></div>
+                              <input class="submit btn btn-danger" type="submit" value="Submit">
+                        </div>
+                      </form>
+
+                    </div>
                 </div>
               </div>  
               </div>
@@ -370,6 +388,7 @@
 <script src="asset/js/plugins/jquery.datatables.min.js"></script>
 <script src="asset/js/plugins/datatables.bootstrap.min.js"></script>
 <script src="asset/js/plugins/jquery.nicescroll.js"></script>
+<script src="asset/js/plugins/select2.full.min.js"></script>
 
 
 <!-- custom -->
@@ -378,7 +397,12 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#datatables-example').DataTable();
-  });  
+  });
+
+  $(".select2-A").select2({
+      placeholder: "Select a subject",
+      allowClear: true
+    });
 </script>
 <!-- end: Javascript -->
 </body>

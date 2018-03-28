@@ -2,39 +2,63 @@ $("#typesel").on('change', function(){
     //user selected the type of paper to upload
     type = $(this).val();
 
-    log(type)
 
-    //Let's get the requirements for the selected level
-    reqs = $("#addPaper .form-group[data-for*='"+type+"']");
-    log('ready to jump')
+    //getting all elements and showing them
+    form_elems = $("#addPaper .form-group.form-cond");
 
-    for(n=0; n<reqs.length; n++){
-    	req = reqs[n]
-    	//Displaying the requirement and activating it with function
-    	$(req).removeClass('display-none');
-    	
-    	log(req)
+    //looping
+    for(n=0; n<form_elems.length; n++){
+        form_elem = form_elems[n];
+        //uses of this elem
+        usage = $(form_elem).data('for').split(",")
 
-    	// activateReq(reqname, req);
+        //checking if we can hide or show
+        if(usage.includes(type)){
+            //unhide
+            $(form_elem).removeClass('display-none');
+
+            //call functio n to render
+            activateReq(type, form_elem);
+        }else{
+            //hide elem
+            $(form_elem).addClass('display-none')
+        }
     }
-
-    //removing elements which are not required
-    not_reqs = $("#addPaper .form-group[data-for*='"+type+"']").not();    
-    log('not in for real');
-    // log(not_reqs)
-
-    for(i=0; i<not_reqs.length; i++){
-    	nreq = not_reqs[i];
-    	log(nreq)
-    	$(nreq).addClass('display-none');
-
-    }
+});
 
 
-
- });
 function activateReq(reqname, elem){
 	//Function to activate some requirements for paper uploading
+
+    elem_use = $(elem).data('role')
+    log(elem_use)
+
+    if(type == 'national_exams'){
+        //here we'll load some national exams resources
+        if(elem_use == 'subject'){
+            //getting subjects taught in national exams
+
+            //we have to know the level from which to load subjects
+            level = $("#levelsel").val();
+            $.post('api/index.php', {action:'subjects', level:level}, function(){
+                try{
+                    ret = JSON.parse(data)
+                    if(ret.status){
+                        //could retrieve the level subjects
+                        subjects = data.data;
+                        $("#subsel")
+                        for(n=0; n<subjects.length; n++){
+
+                        }
+                    }
+                }
+            })
+        }
+
+    }
+
+    log(type)
+    log(elem)
 }
 function log(data){
 	console.log(data)
