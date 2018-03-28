@@ -2,8 +2,7 @@
 <html>
 <head>
 	<?php
-	include_once "functions.php"
-	
+	include_once "functions.php"	
 	?>
 	<title>About | ISOMO Technology</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
