@@ -2,7 +2,7 @@
 <html>
 <head>
 	<?php
-		$title = "Welcome";
+		$title = "Welcome ";
 		include "functions.php";
 		include "modules/head.php";
 	?>
