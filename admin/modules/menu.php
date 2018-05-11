@@ -26,7 +26,7 @@
               <ul class="nav navbar-nav navbar-right user-nav">
                 <li class="user-name"><span><?php echo $admin_name; ?></span></li>
                   <li class="dropdown avatar-dropdown">
-                   <img src="asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                   <img src="asset/img/boss.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                    <ul class="dropdown-menu user-dropdown">
                      <li><a href="#"><span class="fa fa-user"></span> My Profile</a></li>
                      <li><a href="#"><span class="fa fa-calendar"></span> My Calendar</a></li>

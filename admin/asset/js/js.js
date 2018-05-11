@@ -51,6 +51,8 @@ function activateReq(reqname, elem){
 
                         }
                     }
+                }catch(e){
+                    alert(e)
                 }
             })
         }

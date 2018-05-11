@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2018 at 09:25 PM
+-- Generation Time: May 11, 2018 at 06:51 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -51,8 +51,24 @@ INSERT INTO `admin` (`id`, `name`, `username`, `password`, `date_created`) VALUE
 
 CREATE TABLE `answers` (
   `id` int(11) NOT NULL,
-  `file` varchar(1024) NOT NULL
+  `paperId` int(11) NOT NULL,
+  `file` varchar(1024) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`id`, `paperId`, `file`, `date`) VALUES
+(8, 2, '../papers/1525025522.html', '2018-04-29 18:12:02'),
+(9, 2, '../papers/1525025645.html', '2018-04-29 18:14:05'),
+(10, 5, '../papers/1525381350.html', '2018-05-03 21:02:30'),
+(11, 5, '../papers/1525381617.html', '2018-05-03 21:06:57'),
+(13, 8, '../papers/1525382535.html', '2018-05-03 21:22:15'),
+(14, 24, 'answers/1525384982.html', '2018-05-03 22:03:02'),
+(15, 25, 'answers/1525384989.html', '2018-05-03 22:03:09'),
+(16, 26, 'answers/1525385014.html', '2018-05-03 22:03:34');
 
 -- --------------------------------------------------------
 
@@ -84,9 +100,11 @@ INSERT INTO `levels` (`name`, `printname`, `short_intro`, `description`) VALUES
 
 CREATE TABLE `papers` (
   `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
   `subject` int(11) NOT NULL,
+  `level` varchar(16) DEFAULT NULL,
   `file` varchar(1024) NOT NULL,
-  `year` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
   `done_date` date DEFAULT NULL COMMENT 'The date when the exam was done',
   `answers` int(11) DEFAULT NULL COMMENT 'references id for answers',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -96,9 +114,26 @@ CREATE TABLE `papers` (
 -- Dumping data for table `papers`
 --
 
-INSERT INTO `papers` (`id`, `subject`, `file`, `year`, `done_date`, `answers`, `date`) VALUES
-(1, 1, 'store_papers/15186903381.pdf', 2015, NULL, NULL, '2018-03-01 22:01:54'),
-(2, 3, 'store_papers/15186906381.pdf', 2017, '2018-03-22', 1, '2018-03-04 07:22:40');
+INSERT INTO `papers` (`id`, `name`, `subject`, `level`, `file`, `year`, `done_date`, `answers`, `date`) VALUES
+(8, 'S3 Mathematics 2019', 2, 'S3', '../papers/1525025522.html', 2019, NULL, NULL, '2018-04-29 18:12:02'),
+(9, 'S3 Mathematics 2019', 2, 'S3', '../papers/1525025645.html', 2019, NULL, NULL, '2018-04-29 18:14:05'),
+(10, 'Ikizami', 5, '', '../papers/1525381350.html', 0, NULL, NULL, '2018-05-03 21:02:30'),
+(11, 'Ikizami 01', 5, NULL, '../papers/1525381617.html', 0, NULL, NULL, '2018-05-03 21:06:57'),
+(13, ' les rÃ¨gles de circulation', 8, NULL, '../papers/1525382535.html', NULL, NULL, NULL, '2018-05-03 21:22:15'),
+(14, 'Hands', 4, NULL, '../papers/1525384029.html', NULL, NULL, NULL, '2018-05-03 21:47:09'),
+(15, 'Hands', 4, NULL, '../papers/1525384121.html', NULL, NULL, NULL, '2018-05-03 21:48:41'),
+(16, 'Hands', 4, NULL, '../papers/1525384137.html', NULL, NULL, NULL, '2018-05-03 21:48:57'),
+(17, 'Hands', 4, NULL, '../papers/1525384163.html', NULL, NULL, NULL, '2018-05-03 21:49:23'),
+(18, 'DFSDFSD', 4, NULL, '../papers/1525384175.html', NULL, NULL, NULL, '2018-05-03 21:49:35'),
+(19, '', 4, NULL, '../papers/1525384188.html', NULL, NULL, NULL, '2018-05-03 21:49:48'),
+(20, 'SSFSDFS', 4, NULL, '../papers/1525384217.html', NULL, NULL, NULL, '2018-05-03 21:50:17'),
+(21, 'SSFSDFS', 4, NULL, '../papers/1525384910.html', NULL, NULL, NULL, '2018-05-03 22:01:50'),
+(22, 'SSFSDFS', 4, NULL, '../papers/1525384949.html', NULL, NULL, NULL, '2018-05-03 22:02:29'),
+(23, 'SSFSDFS', 4, NULL, '../papers/1525384971.html', NULL, NULL, NULL, '2018-05-03 22:02:51'),
+(24, 'SSFSDFS', 4, NULL, '../papers/1525384982.html', NULL, NULL, NULL, '2018-05-03 22:03:02'),
+(25, 'SSFSDFS', 4, NULL, '../papers/1525384989.html', NULL, NULL, NULL, '2018-05-03 22:03:09'),
+(26, 'Amategeko', 4, NULL, '../papers/1525385014.html', NULL, NULL, NULL, '2018-05-03 22:03:34'),
+(27, 'sdad', 4, NULL, '../papers/1525385131.html', NULL, NULL, NULL, '2018-05-03 22:05:31');
 
 -- --------------------------------------------------------
 
@@ -118,11 +153,14 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id`, `name`, `type`, `language`) VALUES
-(1, 'Mathematics', NULL, 'en'),
-(2, 'Physics', NULL, 'en'),
+(1, 'Mathematics', 1, 'en'),
+(2, 'Physics', 1, 'en'),
 (3, 'Driving theory', 2, 'en'),
 (4, 'Ikizami cya gutwara cyanditse', 2, 'kin'),
-(5, 'Driving theory', 2, 'fr');
+(5, 'Driving theory', 2, 'fr'),
+(6, 'Traffic rules', 3, 'en'),
+(7, 'Amategeko y\'umuhanda', 3, 'kin'),
+(8, 'Les règles de circulation', 3, 'fr');
 
 -- --------------------------------------------------------
 
@@ -142,7 +180,8 @@ CREATE TABLE `subject_levels` (
 
 INSERT INTO `subject_levels` (`id`, `subject`, `level`) VALUES
 (1, 1, 'P6'),
-(2, 1, 'S3');
+(2, 1, 'S3'),
+(3, 2, 'S3');
 
 -- --------------------------------------------------------
 
@@ -225,25 +264,25 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `papers`
 --
 ALTER TABLE `papers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `subject_levels`
 --
 ALTER TABLE `subject_levels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject_type`

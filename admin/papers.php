@@ -21,7 +21,6 @@
       <!-- start: Header -->
         <?php include "modules/menu.php" ?>
       <!-- end: Header -->
-
       <div class="container-fluid mimin-wrapper">
   
           <!-- start:Left Menu -->
@@ -52,8 +51,9 @@
                       $paper_type = $_GET['type']??"";
                       $papers_conf = array('ne'=>'national_exams', 'dte'=>'driving_exam', 'tr'=>'traffic_rules');
 
-                      $cat_papers = category_papers($papers_conf[$paper_type]);
+
                       $paper_cat = $papers_conf[$paper_type];
+                      $cat_papers = category_papers($paper_cat);
                       $paper_cat_name = ucfirst(str_ireplace("_", " ", $paper_cat));
 
                     ?>
@@ -128,9 +128,6 @@
                             echo "<p class='text-danger'>Upload PDF only</p>";
                           }
                           
-
-
-                          // $db->query("INSERT INTO papers()")
                         }else{
                             echo "<p class='text-danger'>Please fill in all the fields</p>";
                         }

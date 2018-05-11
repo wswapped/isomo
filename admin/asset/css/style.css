@@ -234,6 +234,9 @@ p.quote{
    width: 200px;
    border:4px solid #fff;
  }
+ .block{
+  display: block;
+ }
 /*end: Lock Screen*/
 
 /*start: page 404*/

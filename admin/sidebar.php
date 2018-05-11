@@ -11,7 +11,7 @@
     </li>
     <li class="ripple">
       <a class="tree-toggle nav-header" href="papers">
-        <span class="fa-diamond fa"></span> Papers 
+        <span class="fa-clone fa"></span> Papers 
         <span class="fa-angle-right fa right-arrow text-right"></span>
       </a>
       <ul class="nav nav-list tree">
@@ -20,18 +20,7 @@
         <li><a href="papers?type=tr">Traffic rules</a></li>
       </ul>
     </li>
-    <li class="ripple">
-      <a class="tree-toggle nav-header">
-        <span class="fa-area-chart fa"></span> Subjects
-        <span class="fa-angle-right fa right-arrow text-right"></span>
-      </a>
-      <ul class="nav nav-list tree">
-        <li><a href="chartjs.html">ChartJs</a></li>
-        <li><a href="morris.html">Morris</a></li>
-        <li><a href="flot.html">Flot</a></li>
-        <li><a href="sparkline.html">SparkLine</a></li>
-      </ul>
-    </li>
-    <li><a href="credits.html"><span class="fa-area-chart fa"></span> Users</a></li>
+    <li class="ripple"><a href="subjects"><span class="fa-book fa"></span> Subjects</a></li>
+    <li><a href="credits.html"><span class="fa-user fa"></span> Users</a></li>
   </ul>
 </div>

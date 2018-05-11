@@ -75,12 +75,30 @@
 		//returns the papers in a category
 		global $db;
 
-		$query = $db->query("SELECT *, subjects.name as subjectname FROM papers JOIN 	subjects ON papers.subject = subjects.id JOIN subject_type ON subjects.type = subject_type.id WHERE subject_type.name = \"$category\" ") or die("Cant get cat papers $db->error");
+		$sql = "SELECT papers.*, subjects.name as subjectname FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_type ON subjects.type = subject_type.id WHERE subject_type.name = \"$category\" ";
+		
+		$query = $db->query($sql) or die("Cant get cat papers $db->error");
 
 		$papers = array();
 		while ($data = $query->fetch_assoc()) {
 			$papers[] = $data;
 		}
 		return $papers;
+	}
+
+	function addAnswerPaper($questionId, $answerContent){
+		//adds a paper answer to the question
+		global $db;
+
+		//saving answer into file
+		$filename = "answers/".time().".html";
+		$file = fopen("../".$filename, "w+"); //opened in the admin
+		fwrite($file, $answerContent);
+
+		$sql = "INSERT INTO answers(paperId, file) VALUES (\"$questionId\", \"$filename\")";
+
+		$query = $db->query($sql) or trigger_error($db->error);
+		return true;
+
 	}
 ?>
