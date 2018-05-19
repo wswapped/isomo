@@ -3,6 +3,7 @@ RewriteRule ^papers papers.php [NC,L]
 RewriteRule ^driving_theory_exams driving_theory_exams.php [NC,L]
 
 RewriteRule ^traffic_rules traffic_rules.php [NC,L]
+RewriteRule ^buy buy.php [NC,L]
 
 
 RewriteCond %{REQUEST_FILENAME} !-d

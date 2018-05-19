@@ -84,8 +84,8 @@
 																$answer_content = $_POST['paper'];
 
 																//saving paper into file
-																$filename = "../papers/".time().".html";
-																$file = fopen($filename, "w+");
+																$filename = "papers/".time().".html";
+																$file = fopen("../".$filename, "w+");
 																fwrite($file, $paper_content);
 
 																$sql = "INSERT INTO papers(subject, level, name, year, file) VALUES (\"$subject\", \"$level\", \"$name\", \"$year\", \"$filename\")";
@@ -131,8 +131,8 @@
 																$subject = $subjData['id'];
 
 																//saving paper into file
-																$filename = "../papers/".time().".html";
-																$file = fopen($filename, "w+");
+																$filename = "papers/".time().".html";
+																$file = fopen('../'.$filename, "w+");
 																fwrite($file, $paper_content);
 
 																$sql = "INSERT INTO papers(subject, name, file) VALUES (\"$subject\", \"$name\",\"$filename\")";

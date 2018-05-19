@@ -55,7 +55,7 @@
 									<li>Ikinyarwanda</li>
 									<li>Science and Elementary Technology</li>
 									<li>Social Studies</li>
-									<li><a class="mm-view-more" href="#">View more →</a></li>
+									<li><a class="mm-view-more" href="<?php echo get_file("papers/p6") ?>">View more →</a></li>
 								</ul>
 							</span>							
 						</div>
@@ -69,7 +69,7 @@
 										<li>Geography</li>
 										<li>History</li>
 										<li>Entrepreneurship</li>
-										<li><a class="mm-view-more" href="#">View more →</a></li>
+										<li><a class="mm-view-more" href="<?php echo get_file("papers/s3") ?>">View more →</a></li>
 								</ul>
 							</span>							
 						</div>
@@ -82,7 +82,7 @@
 									<li>Geography</li>
 									<li>History</li>
 									<li>Entrepreneurship</li>
-								   	<li><a class="mm-view-more" href="#">View more →</a></li>
+								   	<li><a class="mm-view-more" href="<?php echo get_file("papers/s6") ?>">View more →</a></li>
 								</ul>
 							</span>
 						</div>
@@ -102,9 +102,9 @@
 				<a href="<?php echo get_file('about'); ?>">About us</a>
 			</li>
 			
-			<!-- <li>
+			<li>
 				<a href="<?php echo get_file('contact'); ?>">Contact</a>
-			</li> -->
+			</li>
 		</ul>
 	</nav>
 </div>

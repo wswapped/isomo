@@ -3,7 +3,6 @@
 	function get_levels(){
 		global $db;
 		$query = $db->query("SELECT * FROM levels");
-		var_dump($query);
 		$levels = array();
 		while ($data = $query->fetch_assoc()) {
 			$levels[] = $data;
@@ -36,7 +35,7 @@
 			$file .= "../";
 		}
 		$file .= "$filename";
-		return $file; 
+		return $file;
 	}
 	function page_parts(){
 		$cpage = trim($_SERVER['REQUEST_URI'], "/");
@@ -49,7 +48,7 @@
 
 		$level = strtoupper($level);
 
-		$sql = "SELECT * FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subject_levels.level = \"$level\" ";
+		$sql = "SELECT papers.* FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subject_levels.level = \"$level\" ORDER BY date DESC ";
 		$query = $db->query($sql) or die("error getting papers $db->error");
 		$papers = array();
 		while ($data = $query->fetch_assoc()) {
@@ -99,6 +98,41 @@
 
 		$query = $db->query($sql) or trigger_error($db->error);
 		return true;
+	}
+	function n_total_papers(){
+		//returns the total number of papers
+		global $db;
+		$query = $db->query("SELECT COUNT(*) as num FROM papers WHERE archived  = 'no' ") or trigger_error("Can't count papers $db->error");
+		$data = $query->fetch_assoc();
+		return $data['num'];
+	}
+	function n_total_users(){
+		//returns the total number of users
+		global $db;
+		$query = $db->query("SELECT COUNT(*) as num FROM users WHERE archived  = 'no' ") or trigger_error("Can't count papers $db->error");
+		$data = $query->fetch_assoc();
+		return $data['num'];
+	}
+	function stripURL($text){
+		return strtolower(str_ireplace(" ", "_", $text));
+	}
+	function retain_input($method, $input_name){
+		//check if method can be recognized
+		if(strtolower($method) == 'post'){
+			$value = $_POST[$input_name]??false;
+		}elseif (strtolower($method) == 'get') {
+			$value = $_GET[$input_name]??false;
+		}else return false;
 
+		return $value;
+	}
+	function get_contacts(){
+		global $db;
+		$query = $db->query("SELECT * FROM contacts ORDER BY date DESC") or trigger_error($db->error);
+		$conts = array();
+		while ($data = $query->fetch_assoc()) {
+			$conts[] = $data;
+		}
+		return $conts;
 	}
 ?>

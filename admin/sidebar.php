@@ -21,6 +21,6 @@
       </ul>
     </li>
     <li class="ripple"><a href="subjects"><span class="fa-book fa"></span> Subjects</a></li>
-    <li><a href="credits.html"><span class="fa-user fa"></span> Users</a></li>
+    <li><a href="users"><span class="fa-user fa"></span> Users</a></li>
   </ul>
 </div>

@@ -16,7 +16,6 @@
 		if(count($parts) == 1 && $parts[0] == "")
 			$parts = array();
 
-
 		//Identifying routes
 		if($level == 1){
 			$page_name = 'home';
@@ -40,6 +39,22 @@
 				$title = "$printname papers";
 			}else{
 				//maybe something else we're trying to access
+			}
+		}else if($level == 3){
+			//individual paper could be being requested
+			if($parts[0] == 'get'){
+				$paper_pname = $parts[1]; //paper path name
+				$papername = str_ireplace("_", " ", $db->real_escape_string($paper_pname));
+
+				//checking the paper against the database
+				$sql = "SELECT * FROM papers WHERE LOWER(name) = \"$papername\" ";
+				$query = $db->query($sql) or trigger_error("Error getting a paper");
+				if($query->num_rows){
+					$paper_data = $query->fetch_assoc();
+					$paper_file = $paper_data['file'];
+				}
+			}else{
+				die();
 			}
 		}else if(strpos($parts[1], "driving_theory") == 0){
 			// if the first part is thta, then we have to search for driving theory paper
@@ -82,6 +97,8 @@
 								<h1 class="page-title"><?php echo $printname ?> papers</h1>
 								<p class="text-muted"><i><?php echo $paper_intro; ?></i></p>
 							</div>
+							<div class="col-md-3">
+							</div>
 						</div>
 						<div class="mt-4"></div>
 						<div class="row">
@@ -92,9 +109,9 @@
 									$papers = level_papers($spage);
 									for($n=0; $n<count($papers); $n++){
 										$paper = $papers[$n];
-										$pname = $paper['level']." $paper[name] ".$paper['year'];
+										$pname = $paper['name'];
 										?>
-											<li class="list-group-item"><a href="get/<?php echo str_ireplace(" ", "_", strtolower($pname)) ?>"><?php echo $pname ?></a></li>
+											<li class="list-group-item"><a href="<?php echo get_file("papers/get/".str_ireplace(" ", "_", strtolower($pname))); ?>"><?php echo $pname ?></a></li>
 										<?php
 									}
 								?>
@@ -106,7 +123,6 @@
 			}else if($spage =='get'){
 
 				if(!empty($paper_data)){
-
 					//Some details
 					$papername =  $paper_data['name'];
 					$paper_parts = explode("_", $papername);
@@ -118,15 +134,17 @@
 							<div class="row">
 								<div class="col-md-12">
 									<h1 class="page-title"><?php echo ucwords($subjname);  ?></h1>
-									<div class="embed-responsive embed-responsive-16by9">
-										<iframe scrolling ='no' class="embed-responsive-item" frameborder="0" width="400" height="100%" src="<?php echo get_file($paper_data['file']); ?>"></iframe>
+									<div>
+										<button class="btn btn-primary"><a href="<?php echo "/buy/".$paper_pname; ?>" style="color: inherit; text-decoration: inherit;">BUY</a></button>
 									</div>
+									<?php
+										include $paper_file;
+									?>
 								</div>
 							</div>
 						</div>
 					<?php
 				}else{
-
 					//Here want to display a paper
 					$papername =  $parts[1];
 					$paper_parts = explode("_", $papername);
@@ -153,7 +171,7 @@
 			}
 
 		}
+		include "modules/footer.php";
 	?>
-	<?php include "modules/footer.php"; ?>
 </body>
 </html>

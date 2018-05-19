@@ -60,7 +60,7 @@
 							<div class="col-md-12">
 								<ul class="list-group">
 								<?php
-									$papers = $Paper->getDrivingPaper();
+									$papers = $Paper->getTrafficPapers();
 									for($n=0; $n<count($papers); $n++){
 										$paper_data = $papers[$n];
 										?>

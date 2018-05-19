@@ -61,6 +61,7 @@
 								<ul class="list-group">
 								<?php
 									$papers = $Paper->getDrivingPaper();
+									// var_dump($papers);
 									for($n=0; $n<count($papers); $n++){
 										$paper_data = $papers[$n];
 										?>
