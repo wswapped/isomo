@@ -116,6 +116,9 @@
 	function stripURL($text){
 		return strtolower(str_ireplace(" ", "_", $text));
 	}
+	function URLtotext($text){
+		return ucwords(str_ireplace("_", " ", $text));
+	}
 	function retain_input($method, $input_name){
 		//check if method can be recognized
 		if(strtolower($method) == 'post'){

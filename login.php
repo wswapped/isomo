@@ -43,14 +43,27 @@
 												//check the login
 												$userId = $User->login($username, $password);
 												if($userId){
-													header("location:index");
+
+													//checking if there is a redirect link set
+													$red_link = $_SESSION['enterlink']??"index";
+
+
+													//unset the link
+													unset($_SESSION['enterlink']);
+
+													header("location:$red_link");
 												}else{
 													echo '<p class="text-warning">Invalid username or password</p>';
 												}
 											}else{
 												echo '<p class="text-warning">Enter all the required inputs</p>';
 											}
-										} 
+										}
+										//checking if there is a message set for login information
+										if($login_message = $_SESSION['loginmessage']){
+											echo '<div class="alert alert-success" role="alert">'.$login_message.'
+													</div>';	
+										}
 										
 
 									?>

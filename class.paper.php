@@ -31,8 +31,6 @@ class paper{
 			$papers[] = array_merge($data, $paper_data);
 		}
 		return $ret;
-	}
-	
+	}	
 }
-
 ?>

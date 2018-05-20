@@ -42,6 +42,12 @@ class user{
 
 		return $_SESSION['loggedUser']??false;
 	}
+	function get($user_id){
+		//gets the data of the user
+		global $db;
+		$query = $db->query("SELECT * FROM users WHERE id = $user_id ") or trigger_error($db->error);
+		return $query->fetch_assoc();
+	}
 	
 }
 $User = new user();

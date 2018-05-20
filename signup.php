@@ -17,6 +17,13 @@
 		//removing empty routes
 		$page_parts = array_values(array_filter($page_parts));
 
+		include_once 'class.user.php';
+
+		if($User->checkLogin()){
+			//user already logged in
+			header('location:index');
+		}
+
 		include 'modules/head.php';
 	?>
 
@@ -72,7 +79,13 @@
 											}else{
 												echo '<p class="text-warning">Enter all the required inputs</p>';
 											}
-										} 
+										}
+
+										//checking if there is a message set for signup information
+										if($signup_message = $_SESSION['signupmessage']){
+											echo '<div class="alert alert-success" role="alert">'.$signup_message.'
+													</div>';	
+										}
 										
 
 									?>
