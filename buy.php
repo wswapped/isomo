@@ -67,6 +67,9 @@
 									<h1 class="page-title"><?php echo $paper_name ?></h1>
 									<?php
 										if($answer_paper){
+											//Check if the user bought the paper already
+											$buy_status = $Paper->bought($current_user, $answer_paper_id);
+											if(!$buy_status || $buy_status == 'failed'){
 											?>
 												<p>200 FRW</p>
 												<?php
@@ -117,6 +120,11 @@
 													}
 												?>
 											<?php
+											}else if($buy_status == 'done'){
+												echo '<div class="alert alert-success" role="alert">You have already bought answers, you can view them here</div>';
+											}else if($buy_status == 'pending'){
+												echo '<div class="alert alert-success" role="alert">You ordered the paper already, please pay to access the answer</div>';
+											}
 										}else{
 											echo "<p>We don't have the answers for this paper</p>";
 										}

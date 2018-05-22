@@ -31,6 +31,22 @@ class paper{
 			$papers[] = array_merge($data, $paper_data);
 		}
 		return $ret;
-	}	
+	}
+	public function bought($userId, $answerId)
+	{
+		# Checks if the user bought the paper
+		global $db;
+
+		$query = $db->query("SELECT * FROM buy_requests WHERE user = \"$userId\" AND answer = \"$answerId\"") or trigger_error($db->error);
+		
+		if($query->num_rows){
+			$data = $query->fetch_assoc();
+
+			$status = $data['status'];
+
+			return $status;
+		}else return false;
+			
+	}
 }
 ?>
