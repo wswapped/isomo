@@ -4,6 +4,7 @@
 	<?php
 		include "functions.php";
 		include_once 'class.paper.php';
+		include_once 'class.user.php';
 
 		$Paper = new paper();
 
@@ -78,7 +79,8 @@
 		include "modules/menu.php";
 
 		if($level == 1){
-			include "paper_home.php";
+			header("location:../");
+			// include "paper_home.php";
 		}else{
 			$spage = $parts[0];
 
@@ -121,7 +123,6 @@
 					</div>
 				<?php
 			}else if($spage =='get'){
-
 				if(!empty($paper_data)){
 					//Some details
 					$papername =  $paper_data['name'];
@@ -129,13 +130,35 @@
 					$subjname = $paper_data['name'];
 					$subj_level = $paper_parts[0];
 					$subj_year = $paper_data['year'];
+
+					$paper_id = $paper_data['id'];
+
+					//checking answer
+					$answerData = $Paper->get_answer($paper_id);
+					if($answerData){
+						$answer_paper_id = $answerData['id'];
+						$buy_status = $Paper->bought($current_user, $answer_paper_id);
+					}else{
+						$buy_status = false;
+					}
 					?>
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12">
 									<h1 class="page-title"><?php echo ucwords($subjname);  ?></h1>
 									<div>
-										<button class="btn btn-primary"><a href="<?php echo "/buy/".$paper_pname; ?>" style="color: inherit; text-decoration: inherit;">BUY</a></button>
+										<?php
+											if($buy_status == 'pending'){
+												echo '<p class="alert alert-info">Your purchase is pending, Please send money to get answers</p>';
+											}else if($buy_status == 'done'){
+												?>
+													<button class="btn btn-primary"><a href="#answer" style="color: inherit; text-decoration: inherit;">BUY</a></button>
+												<?php
+											}else{
+												echo '<button class="btn btn-primary"><a href="/buy/'.$paper_pname.'" style="color: inherit; text-decoration: inherit;">BUY</a></button>';
+											}
+										?>
+										
 									</div>
 									<?php
 										include $paper_file;
@@ -145,6 +168,8 @@
 						</div>
 					<?php
 				}else{
+					header("location:../");
+					die();
 					//Here want to display a paper
 					$papername =  $parts[1];
 					$paper_parts = explode("_", $papername);
@@ -152,9 +177,15 @@
 					$subj_level = $paper_parts[0];
 					$subj_year = $paper_parts[2];
 
-					//Getting this paper
 					$query = $db->query("SELECT * FROM papers JOIN subjects ON subjects.id = papers.subject JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subjects.name = \"$subjname\" AND subject_levels.level = \"$subj_level\" AND papers.year = \"$subj_year\" LIMIT 1 ") or die("can't get a paper $db->error");
 					$paper_data = $query->fetch_assoc();
+
+
+					$paper_id = $paper_data['id'];
+
+					//checking answer
+					$answerData = $Paper->get_answer($paper_id);
+					var_dump($answerData);
 					?>
 						<div class="container">
 							<div class="row">

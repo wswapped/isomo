@@ -35,7 +35,7 @@
 			<div class="col-lg-4 col-sm-6 col-xs-12">
 				<div class="card">
 					<a href="<?php echo get_file('papers/p6') ?>"><img class="card-img-top intro-card-img" src="img/primary.png" alt="Primary papers"></a>		
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Primary 6</h4>
 				    	<p class="card-text text-muted">Get papers to help prepare for Primary Leaving Exam.</p>
 				    	<a href="<?php echo get_file('papers/p6') ?>" class="btn btn-primary pull-right">Get papers</a>
@@ -46,7 +46,7 @@
 				<div class="card">
 					<a href="<?php echo get_file('papers/s3') ?>"><img class="card-img-top intro-card-img" src="img/olevel.png" alt="Senior 3 papers"></a>
 					
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Senior 3</h4>
 				    	<p class="card-text text-muted">Want to jump into path to your career, we are here to help.</p>
 				    	<a href="<?php echo get_file('papers/s3') ?>" class="btn btn-primary pull-right">Get papers</a>
@@ -56,7 +56,7 @@
 			<div class="col-lg-4 col-sm-6 col-xs-12">
 				<div class="card">
 					<a href="<?php echo get_file('papers/s6') ?>"><img class="card-img-top intro-card-img" src="img/final.jpg" alt="Secondary 6 papers"></a>					
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Senior 6</h4>
 				    	<p class="card-text text-muted">Preparing to leaving secondary school get help here.</p>
 				    	<a href="<?php echo get_file('papers/s6') ?>" class="btn btn-primary pull-right">Get papers</a>
@@ -72,7 +72,7 @@
 				<div class="card">
 					<a href="<?php echo get_file('driving_theory_exams') ?>"><img class="card-img-top intro-card-img" src="img/driving.jpg" alt="Driving theory exams"></a>
 					
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Driving theory exams</h4>
 				    	<p class="card-text text-muted">Ready to take driving test, get papers to help you to pass.</p>
 				    	<a href="driving_theory_exams" class="btn btn-primary pull-right">Get papers</a>
@@ -83,7 +83,7 @@
 				<div class="card">
 					<a href="<?php echo get_file('traffic_rules') ?>"><img class="card-img-top intro-card-img" src="img/amategeko.jpg" alt="Amategeko y'umuhanda"></a>
 					
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Amategeko y'umuhanda</h4>
 				    	<p class="card-text text-muted">Bona amategeko y'umuhanda atandukanye yagufasha mu kwiga witegura ikizami.</p>
 				    	<a href="#" class="btn btn-primary pull-right">Get papers</a>
@@ -93,7 +93,7 @@
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<div class="card">
 					<img class="card-img-top intro-card-img" src="img/scholarship.png" alt="Primary papers">
-					<div class="card-block">
+					<div class="card-body">
 				    	<h4 class="card-title item-title">Scholarship</h4>
 				    	<p class="card-text text-muted">Access thousands of scholarships.</p>
 				    	<a href="#" class="btn btn-primary pull-right">View scholarships</a>

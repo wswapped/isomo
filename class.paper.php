@@ -32,6 +32,40 @@ class paper{
 		}
 		return $ret;
 	}
+	public function paper_details($paper_data, $type='name')
+	{
+		//Checking the paper and answer
+		global $db;
+
+		$column = $type == 'name'?'name':'id';
+
+		$sql = "SELECT P.*, A.id as answerid, A.file as answer FROM papers AS P JOIN answers AS A ON P.id = A.paperId WHERE P.$column = \"$paper_data\" LIMIT 1 ";
+
+		$query = $db->query($sql) or trigger_error("Can't see level $db->error");
+
+		if($query->num_rows){
+			$paperData = $level = $query->fetch_assoc();
+			return $paperData;
+		}else{
+			return false;
+		}
+	}
+	public function get_answer($paper_id)
+	{
+		//Check answer
+		global $db;
+
+		$sql = "SELECT * FROM answers WHERE paperId = \"$paper_id\" LIMIT 1 ";
+
+		$query = $db->query($sql) or trigger_error("Can't see level $db->error");
+
+		if($query->num_rows){
+			$paperData = $level = $query->fetch_assoc();
+			return $paperData;
+		}else{
+			return false;
+		}
+	}
 	public function bought($userId, $answerId)
 	{
 		# Checks if the user bought the paper

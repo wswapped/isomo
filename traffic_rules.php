@@ -38,7 +38,7 @@
 	<div class="container">
 		<div class="col-sm-12">
 			<div class="card">
-				<div class="card-block">
+				<div class="card-body">
 					<h1 class="card-title page-title">Traffic rules</h1>
 					<?php if($page_name == 'home'){ ?>
 						<div class="row">						

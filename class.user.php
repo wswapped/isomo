@@ -51,4 +51,5 @@ class user{
 	
 }
 $User = new user();
+$current_user = $User->checkLogin();
 ?>

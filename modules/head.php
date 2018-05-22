@@ -12,3 +12,5 @@
 
 <!-- Custom style -->
 <link rel="stylesheet" href="<?php echo get_file('css/style.css'); ?>">
+<!-- <meta charset="UTF-8"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
