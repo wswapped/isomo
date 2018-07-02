@@ -9,7 +9,7 @@
 			<div style="    background: #fd4c01;padding: 12px;color: #fff;">
 				<ul class="list-inline pull-right">
 					<li class="list-inline-item"><i class="fa fa-phone"></i> +250 788 308 590 /whatsapp</li>
-					<li class="list-inline-item"><i class="fa fa-envelope"></i> shyaka@isomo.rw</li>
+					<li class="list-inline-item"><i class="fa fa-envelope"></i> info@isomo.info</li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>
@@ -116,7 +116,14 @@
 			</li>
 			<li>
 				<a href="<?php echo get_file('contact'); ?>">Contact</a>
-			</li>	
+			</li>
+			<li class="pull-right">
+				<ul class="list-inline inline">
+					<li class="list-inline-item"><a style="text-decoration: none;" href="https://www.facebook.com/isomo.info"><img src="/img/fb_icon.svg" height="32px" /></a></li>
+					<li class="list-inline-item"><a style="text-decoration: none;" href="https://twitter.com/Isomo_info"><i class="fa fa-2x fa-twitter"></i></a></li>
+				</ul>
+			</li>
 		</ul>
+			
 	</nav>
 </div>

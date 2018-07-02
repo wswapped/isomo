@@ -36,83 +36,81 @@
 <body>
 	<?php include "modules/menu.php"; ?>
 	<div class="container">
-		<div class="col-sm-12">
-			<div class="card">
-				<div class="card-block">
-					<h1 class="card-title page-title">Driving theory exam papers</h1>
-					<?php if($page_name == 'home'){ ?>
-						<div class="row">						
-							<div class="col-md-12">
-								<p class="text-muted">Choose language</p>
-							</div>
-							<div class="col-md-4">
-								<a href="<?php echo get_file("$cpage/kin") ?>"><img class="s_small_logo" src="<?php echo get_file('img/rwandaflag.svg'); ?>"><span> Kinyarwanda</span></a>
-							</div>
-							<div class="col-md-4">							
-								<a href="<?php echo get_file("$cpage/en") ?>"><img class="s_small_logo" src="<?php echo get_file('img/en.png'); ?>"> English</a>
-							</div>
-							<div class="col-md-4">
-								<a href="<?php echo get_file("$cpage/fr") ?>"><img class="s_small_logo" src="<?php echo get_file('img/french.png'); ?>"> French</a>
-							</div>
-						</div>					
-						<div class="mt-4"></div>
-						<div class="row">
-							<div class="col-md-12">
-								<ul class="list-group">
-								<?php
-									$papers = $Paper->getDrivingPaper();
-									// var_dump($papers);
-									for($n=0; $n<count($papers); $n++){
-										$paper_data = $papers[$n];
-										?>
-											<li class="list-group-item dblock">
-												<a href="<?php echo get_file($paper_data['link']) ?>"><?php echo $paper_data['name']; ?></a><br />
-												<p class="font-italic text-small"><?php echo date("d F Y", strtotime($paper_data['date'])) ?></p>
-												<?php
-													if(!empty($paper_data['answers'])){
-														?>
-															<p class="text-success">Answers available</p>
-														<?php
-													}
-												?>
-											</li>
-										<?php
-									}
-								?>
-								</ul>
-							</div>
+		<div class="card">
+			<div class="card-body">
+				<h1 class="card-title page-title">Driving theory exam papers</h1>
+				<?php if($page_name == 'home'){ ?>
+					<div class="row">						
+						<div class="col-md-12">
+							<p class="text-muted">Choose language</p>
 						</div>
-					<?php }else{
-						//Language specified
-						?>
-						<div class="row">
-							<div class="col-md-12">
-								<ul class="list-group">
-								<?php
-									$papers = $Paper->getDrivingPaper($page_name);
-									for($n=0; $n<count($papers); $n++){
-										$paper_data = $papers[$n];
-										?>
-											<li class="list-group-item dblock">
-												<a href="<?php echo get_file($paper_data['link']) ?>"><?php echo $paper_data['name']; ?></a><br />
-												<p class="font-italic text-small"><?php echo date("d F Y", strtotime($paper_data['date'])) ?></p>
-												<?php
-													if(!empty($paper_data['answers'])){
-														?>
-															<p class="text-success">Answers available</p>
-														<?php
-													}
-												?>
-											</li>
-										<?php
-									}
-								?>
-								</ul>
-							</div>
+						<div class="col-md-4">
+							<a href="<?php echo get_file("$cpage/kin") ?>"><img class="s_small_logo" src="<?php echo get_file('img/rwandaflag.svg'); ?>"><span> Kinyarwanda</span></a>
 						</div>
-						<?php
-					} ?>
-				</div>
+						<div class="col-md-4">							
+							<a href="<?php echo get_file("$cpage/en") ?>"><img class="s_small_logo" src="<?php echo get_file('img/en.png'); ?>"> English</a>
+						</div>
+						<div class="col-md-4">
+							<a href="<?php echo get_file("$cpage/fr") ?>"><img class="s_small_logo" src="<?php echo get_file('img/french.png'); ?>"> French</a>
+						</div>
+					</div>					
+					<div class="mt-4"></div>
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="list-group">
+							<?php
+								$papers = $Paper->getDrivingPaper();
+								// var_dump($papers);
+								for($n=0; $n<count($papers); $n++){
+									$paper_data = $papers[$n];
+									?>
+										<li class="list-group-item dblock">
+											<a href="<?php echo get_file($paper_data['link']) ?>"><?php echo $paper_data['name']; ?></a><br />
+											<p class="font-italic text-small"><?php echo date("d F Y", strtotime($paper_data['date'])) ?></p>
+											<?php
+												if(!empty($paper_data['answers'])){
+													?>
+														<p class="text-success">Answers available</p>
+													<?php
+												}
+											?>
+										</li>
+									<?php
+								}
+							?>
+							</ul>
+						</div>
+					</div>
+				<?php }else{
+					//Language specified
+					?>
+					<div class="row">
+						<div class="col-md-12">
+							<ul class="list-group">
+							<?php
+								$papers = $Paper->getDrivingPaper($page_name);
+								for($n=0; $n<count($papers); $n++){
+									$paper_data = $papers[$n];
+									?>
+										<li class="list-group-item dblock">
+											<a href="<?php echo get_file($paper_data['link']) ?>"><?php echo $paper_data['name']; ?></a><br />
+											<p class="font-italic text-small"><?php echo date("d F Y", strtotime($paper_data['date'])) ?></p>
+											<?php
+												if(!empty($paper_data['answers'])){
+													?>
+														<p class="text-success">Answers available</p>
+													<?php
+												}
+											?>
+										</li>
+									<?php
+								}
+							?>
+							</ul>
+						</div>
+					</div>
+					<?php
+				} ?>
 			</div>
 		</div>
 	</div>
