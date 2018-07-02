@@ -4,12 +4,26 @@
 	$pname = $page_parts[0];
 ?>
 <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div style="    background: #fd4c01;padding: 12px;color: #fff;">
+				<ul class="list-inline pull-right">
+					<li class="list-inline-item"><i class="fa fa-phone"></i> +250 788 308 590</li>
+					<li class="list-inline-item"><i class="fa fa-envelope"></i> shyaka@isomo.rw</li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
 	<div class="xs-menu-cont">
 		<a id="menutoggle"><i class="fa fa-align-justify"></i> </a>
 		<nav class="xs-menu displaynone">
 			<ul>
 				<li class="<?php echo $pname==''?'active':'' ?>">
 					<a href="<?php echo get_file('index'); ?>">Home</a>
+				</li>
+				<li class="<?php echo $pname=='about'?'active':'' ?>">
+					<a href="<?php echo get_file('about'); ?>">About us</a>
 				</li>
 				<li class="<?php echo $pname=='driving_theory_exams'?'active':'' ?>">
 					<a href="<?php echo get_file("driving_theory_exams") ?>">Driving Theory Exams</a>
@@ -20,9 +34,7 @@
 				<li>
 					<a href="#">Scholarships</a>
 				</li>
-				<li class="<?php echo $pname=='about'?'active':'' ?>">
-					<a href="<?php echo get_file('about'); ?>">About us</a>
-				</li>
+				
 
 			</ul>
 		</nav>
@@ -35,6 +47,10 @@
 			<li class="<?php echo ($pname=='' || $pname == 'index')?'active':'' ?>">
 				<a href="<?php echo get_file('index'); ?>">Home</a>
 			</li>
+			<li class="<?php echo $pname=='about'?'active':'' ?>">
+				<a href="<?php echo get_file('about'); ?>">About us</a>
+			</li>		
+			
 			<li class="com-menu <?php echo $pname=='papers'?'active':'' ?>">
 				<a href="<?php echo get_file('papers') ?>">
 					<span>National exams <i class="fa fa-caret-down"></i></span>
@@ -98,13 +114,9 @@
 			<li>
 				<a href="#">Scholarships</a>
 			</li>
-			<li class="<?php echo $pname=='about'?'active':'' ?>">
-				<a href="<?php echo get_file('about'); ?>">About us</a>
-			</li>
-			
 			<li>
 				<a href="<?php echo get_file('contact'); ?>">Contact</a>
-			</li>
+			</li>	
 		</ul>
 	</nav>
 </div>

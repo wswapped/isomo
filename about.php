@@ -24,9 +24,9 @@
 	<div class="container">
 		<div class="page">
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-4 pr-2">
 					<div class="card">						
-						<div class="card-block">
+						<div class="card-body">
 							<img class="about-img img-responsive" src="img/isomo-award.jpg" alt="Isomo imbuto award">
 							<ul class="list-group">
 								<li></li>
@@ -36,13 +36,12 @@
 						</div>
 					</div>
 					<div class="card">
-						<div class="card-block">
+						<div class="card-body">
 							<h3 class="card-title">Our Location</h3>
 							<!-- <div id="map" style="min-height: 600px">
 								
 							</div> -->
-							<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAAa1K0Q8xIXswQC7uCMrbvwYi2CcSTTiU&q=ISOMO+TECHNOLOGY+LTD" allowfullscreen>
-</iframe>
+							<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAAa1K0Q8xIXswQC7uCMrbvwYi2CcSTTiU&q=ISOMO+TECHNOLOGY+LTD" allowfullscreen></iframe>
 						</div>
 					</div>
 										
@@ -52,7 +51,7 @@
 						<div class="card-header card-title">
 						    About ISOMO Technology
 						</div>
-						<div class="card-block">
+						<div class="card-body">
 							<p>
 								ISOMO TECHNOLOGY Ltd is an innovating Company of Internet Archive registered in RDB and is intended to make a contribution to advancing education through the use of ICT. To achieve this, Isomo Technology has developed a website to serve as an online resource and guide centre with a wide range of educational information and materials for different levels of users. This is foster more meaningful use of internet not only among the youth but also for the general public. Specifically the website is making the following accessible:
 							</p>

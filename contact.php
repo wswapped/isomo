@@ -14,8 +14,8 @@
 		
 		<div class="col-sm-12">
 			<div class="card" style="max-width: 650px; margin: 0 auto">
-				<div class="card-block">
-					<h1 class="card-title">Contact Isomo Technology</h1>					
+				<div class="card-body">
+					<h1 class="card-title"><em>Contact Isomo Technology</em></h1>					
 					<div class="card-body">
 					    <form method="POST" action="contact">
 					    	<?php
@@ -37,18 +37,36 @@
 					    			}
 					    		}
 					    	?>
-							<div class="rowa">
-								<div class="col-md-6">
+							<div class="row">
+								<div class="col col-6">
 									<div class="form-group">
 										<label for="namein">Name</label>
-										<input type="text" class="form-control" id="namein" name="name" placeholder="Name">
+										<div class="input-group mt-3">
+											<div class="input-group-prepend">
+										    	<span class="input-group-text"><i class="icon-append fa fa-user"></i></span>
+										  	</div>
+										  	<input type="text" class="form-control" id="namein" name="name" placeholder="Name">
+										  	<!-- <input type="email" class="form-control" aria-label="Enter email" name="email" placeholder="Enter email"> -->
+										</div>
+										
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col col-6 pl-4">
+									
 									<div class="form-group">
 										<label for="exampleInputEmail1">Email address</label>
-										<input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-									  </div>
+										<div class="input-group mt-3">
+											<div class="input-group-prepend">
+										    	<span class="input-group-text"><i class="icon-append fa fa-envelope-o"></i></span>
+										  	</div>
+										  	<input type="email" class="form-control" aria-label="Enter email" name="email" placeholder="Enter email">
+										</div>
+										
+									</div>
+									  <!-- <label class="input">
+									
+									<input type="email" required="" name="email" id="email">
+									</label> -->
 								</div>
 								<div class="col-sm-12">
 									<div class="form-group">
@@ -61,19 +79,20 @@
 								</div>
 							</div>
 						</form>
-
-					 </div>
+					</div>
 
 					<div class="mt-5"> </div>
-					<p>You can contact us with addres</p>
-					<ul class="list-group-flush">
-						<li class="list-group-item">
-							Phone: <span>+250 788 761 869</span>
-						</li>
-						<li class="list-group-item">
-							email: <span>info@isomo.info</span>
-						</li>
-					</ul>
+					<div class="card-body">
+						<p>You can contact us with address</p>
+						<ul class="list-group-flush">
+							<li class="list-group-item">
+								Phone: <span>+250 788 761 869</span>
+							</li>
+							<li class="list-group-item">
+								email: <span>info@isomo.info</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
