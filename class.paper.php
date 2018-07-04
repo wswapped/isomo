@@ -45,13 +45,43 @@ class paper{
 
 		if($query->num_rows){
 			$paperData =  $query->fetch_assoc();
-			$paperPath = str_ireplace(" ", "_", strtolower($paperData['name'])));
+			$paperPath = str_ireplace(" ", "_", strtolower($paperData['name']));
 			$paperData['link'] = "papers/get/$paperPath";
 			return $paperData;
 		}else{
 			return false;
 		}
 	}
+
+
+	public function get($paperId)
+	{
+		//Checking the paper and answer
+		global $db;
+
+		$sql = "SELECT P.*, S.name as subjectName FROM papers AS P JOIN subjects AS S ON S.id = P.subject WHERE P.id = \"$paperId\" LIMIT 1 ";
+		$query = $db->query($sql) or trigger_error("Can't see level $db->error");
+
+		if($query->num_rows){
+
+			//check the answer
+			$answerData = $this->get_answer($paperId);
+
+			$paperData =  $query->fetch_assoc();
+
+
+
+			$paperData['answer'] = "papers/get/";
+			$paperData['answerid'] = "papers/get";
+
+			$paperPath = str_ireplace(" ", "_", strtolower($paperData['name']));
+			$paperData['link'] = "papers/get/$paperPath";
+			return $paperData;
+		}else{
+			return false;
+		}
+	}
+
 	public function get_answer($paper_id)
 	{
 		//Check answer
