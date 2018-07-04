@@ -44,7 +44,9 @@ class paper{
 		$query = $db->query($sql) or trigger_error("Can't see level $db->error");
 
 		if($query->num_rows){
-			$paperData = $level = $query->fetch_assoc();
+			$paperData =  $query->fetch_assoc();
+			$paperPath = str_ireplace(" ", "_", strtolower($paperData['name'])));
+			$paperData['link'] = "papers/get/$paperPath";
 			return $paperData;
 		}else{
 			return false;

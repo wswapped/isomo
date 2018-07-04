@@ -22,5 +22,6 @@
     </li>
     <li class="ripple"><a href="subjects"><span class="fa-book fa"></span> Subjects</a></li>
     <li><a href="users"><span class="fa-user fa"></span> Users</a></li>
+    <li><a href="subscribers"><span class="fa-envelope fa"></span> Subscribers</a></li>
   </ul>
 </div>

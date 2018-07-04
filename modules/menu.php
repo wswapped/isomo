@@ -126,4 +126,29 @@
 		</ul>
 			
 	</nav>
+
+	<?php
+		//check if someone just skipped the search module
+		if(!empty($skipSearchModule) && $skipSearchModule){
+
+		}else{
+	?>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="pull-right mt-2 mb-3">
+					<form method="GET" action="/search">
+						<div class="input-group">
+						  	<input type="text" max="30" min="1" class="form-control" name='q' value="<?php echo retain_input('GET', 'q'); ?>" required="required">
+						  	<!-- <input type="hidden" name='type' value="search"> -->
+						  	<div class="input-group-append">
+						    	<button class="btn btn-primary" type="submit">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	<?php
+		}
+	?>
 </div>

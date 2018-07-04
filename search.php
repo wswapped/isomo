@@ -79,9 +79,41 @@
 </head>
 <body>
 	<?php
+		$skipSearchModule = True;
 		include "modules/menu.php";
+	?>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4" style="margin: 0 auto">
+				<form method="GET" action="/search">
+					<div class="input-group">
+					  	<input type="text" max="30" min="1" class="form-control" name='q' value="<?php echo retain_input('GET', 'q'); ?>" required="required">
+					  	<!-- <input type="hidden" name='type' value="search"> -->
+					  	<div class="input-group mt-4">
+					    	<button class="btn btn-primary" type="submit">Search</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-12">
+				<?php
+					$q = $_GET['q']??"";
+
+					//retrieve queries
+					if($q){
+						$papersQ = $db->query("SELECT * FROM papers WHERE name LIKE \"%$q%\" OR level LIKE \"%$q%\" ") or trigger_error($db->error);
+						while ($paperData = $papersQ->fetch_assoc()) {
+							# code...
+						}
+					}
+				?>	
+			</div>
+		</div>
+	</div>
+	<?php
+
 		if($level == 1){
-			header("location:../");
+			// header("location:../");
 			// include "paper_home.php";
 		}else{
 			$spage = $parts[0];
@@ -165,37 +197,6 @@
 									<?php
 										include $paper_file;
 									?>
-								</div>
-							</div>
-						</div>
-					<?php
-				}else{
-					header("location:../");
-					die();
-					//Here want to display a paper
-					$papername =  $parts[1];
-					$paper_parts = explode("_", $papername);
-					$subjname = $paper_parts[1];
-					$subj_level = $paper_parts[0];
-					$subj_year = $paper_parts[2];
-
-					$query = $db->query("SELECT * FROM papers JOIN subjects ON subjects.id = papers.subject JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subjects.name = \"$subjname\" AND subject_levels.level = \"$subj_level\" AND papers.year = \"$subj_year\" LIMIT 1 ") or die("can't get a paper $db->error");
-					$paper_data = $query->fetch_assoc();
-
-
-					$paper_id = $paper_data['id'];
-
-					//checking answer
-					$answerData = $Paper->get_answer($paper_id);
-					var_dump($answerData);
-					?>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-12">
-									<h1 class="page-title"><?php echo ucwords($subjname)." of ".$subj_year;  ?></h1>
-									<div class="embed-responsive embed-responsive-16by9">
-										<iframe scrolling ='no' class="embed-responsive-item" frameborder="0" width="400" height="100%" src="<?php echo get_file($paper_data['file']); ?>"></iframe>
-									</div>
 								</div>
 							</div>
 						</div>
