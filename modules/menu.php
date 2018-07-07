@@ -8,7 +8,7 @@
 		<div class="col-md-12">
 			<div style="    background: #fd4c01;padding: 12px;color: #fff;">
 				<ul class="list-inline pull-right">
-					<li class="list-inline-item"><i class="fa fa-phone"></i> +250 788 308 590 /whatsapp</li>
+					<li class="list-inline-item"><i class="fa fa-phone"></i> +250 788 761 869 /whatsapp</li>
 					<li class="list-inline-item"><i class="fa fa-envelope"></i> info@isomo.info</li>
 				</ul>
 				<div class="clearfix"></div>
