@@ -20,6 +20,49 @@
 		}
 		return $subjects;
 	}
+
+	function subject_name_to_id($name){
+		//searches the subject with a name
+		global $db;
+		$name = $db->real_escape_string($name);
+		$query = $db->query("SELECT id FROM subjects WHERE name LIKE \"$name\" LIMIT 1") or trigger_error($db->error);
+		if($query && $query->num_rows){
+			return $query->fetch_assoc()['id'];
+		}else return false;
+	}
+	function search_subject($name){
+		//searches the subject with a name
+		global $db;
+		$name = $db->real_escape_string($name);
+		$query = $db->query("SELECT id FROM subjects WHERE name LIKE \"%$name%\" LIMIT 1") or trigger_error($db->error);
+		if($query && $query->num_rows){
+			return $query->fetch_assoc()['id'];
+		}else return false;
+	}
+
+	function get_subject($subject_id, $level=''){
+		//returns the details on subject
+		global $db;
+		$subject_id = $db->real_escape_string($subject_id);
+
+		$query = $db->query("SELECT * FROM subjects WHERE id = \"$subject_id\" LIMIT 1 ");
+		$data = $query->fetch_assoc();
+		$subject_path = str_encode($data['name']);
+		$data['link'] = "papers/$level?subject=$subject_path";
+		return $data;
+	}
+
+	function menu_promoted_subjects($level='')
+	{
+		# check the menu promoted subjects in a certain level
+		global $db;
+		$level = $db->real_escape_string($level);
+
+		$query = $db->query("SELECT * FROM menu_promoted_subjects WHERE level LIKE \"%$level%\" AND archive = 'no' ") or trigger_error($db->error);
+		$data = $query->fetch_all(MYSQLI_ASSOC);
+		return $data;
+	}
+
 	function page_level(){
 		//function to get the level of page
 		$request_uri = trim($_SERVER['REQUEST_URI'], "/");
@@ -42,13 +85,13 @@
 		$cpage = trim($cpage, "/");
 		return explode("/", $cpage);
 	}
-	function level_papers($level){
-		//Getting papers based on their levels
+	function level_papers($level, $subject = ''){
+		//Getting papers based on their levels and/or $subject
 		global $db;
 
 		$level = strtoupper($level);
 
-		$sql = "SELECT papers.* FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subject_levels.level = \"$level\" ORDER BY date DESC ";
+		$sql = "SELECT papers.* FROM papers JOIN subjects ON papers.subject = subjects.id JOIN subject_levels ON subject_levels.subject = subjects.id WHERE subject_levels.level = \"$level\" AND papers.subject LIKE \"%$subject%\" ORDER BY date DESC ";
 		$query = $db->query($sql) or die("error getting papers $db->error");
 		$papers = array();
 		while ($data = $query->fetch_assoc()) {
@@ -137,5 +180,15 @@
 			$conts[] = $data;
 		}
 		return $conts;
+	}
+
+	function str_decode($str){
+		//decoding sgtring from URL format to general string
+		return str_ireplace("_", " ", $str);
+	}
+
+	function str_encode($str){
+		//encoding sgtring from URL format to general string
+		return str_ireplace(" ", "_", $str);
 	}
 ?>

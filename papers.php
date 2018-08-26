@@ -12,6 +12,13 @@
 		$Paper = new paper();
 
 		$str = trim(str_ireplace("/papers/", '', $_SERVER['REQUEST_URI']), '/');
+
+		//REMOVING GET_VARIABLES
+		if($pos  = strripos($str, "?")){
+			//here get are sent
+			$str = substr_replace($str, '', $pos);
+		}
+
 		$parts = explode("/", trim($str));
 
 		$level = page_level();
@@ -81,8 +88,8 @@
 	<?php
 		include "modules/menu.php";
 		if($level == 1){
-			header("location:../");
-			// include "paper_home.php";
+			// header("location:../");
+			include "paper_home.php";
 		}else{
 			$spage = $parts[0];
 
@@ -94,6 +101,13 @@
 				$printname = $level['printname'];
 				$levelname = $level['name'];
 				$paper_intro = $level['short_intro'];
+
+
+				//check we are looking for a subject in this level, there we load papers in the subject only
+				$pref_subject = str_decode($_GET['subject']??"");
+
+				//getting pref_subject id
+				$pref_subject_id = subject_name_to_id($pref_subject);
 				?>
 					<div class="container">
 						<div class="row">
@@ -110,7 +124,7 @@
 								<ul class="list-group">
 								<?php
 									//Getting papers in level
-									$papers = level_papers($spage);
+									$papers = level_papers($spage, $pref_subject_id);
 									for($n=0; $n<count($papers); $n++){
 										$paper = $papers[$n];
 										$pname = $paper['name'];

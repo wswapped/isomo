@@ -60,32 +60,53 @@
 						<div class="col-md-3">
 							<span class="left-images">
 							<img class="img img-responsive" src="<?php echo get_file("img/exam_qa.jpg") ?>">
-							<p>Most Popular Exam Resources</p>
+							<!-- <p>Most Popular Exam Resources</p> -->
 						</div>						
 						<div class="col-md-3">
 							<span class="categories-list">
 								<ul>
 									<span>Primary 6</span>
-									<li>Mathematics</li>
-									<li>English</li>
-									<li>Ikinyarwanda</li>
-									<li>Science and Elementary Technology</li>
-									<li>Social Studies</li>
+									<?php
+										//get promoted subjects in s6
+										$s6_subjects = menu_promoted_subjects('s6');
+										$n = 0;
+										foreach ($s6_subjects as $key => $value) {
+											$subjectData = get_subject($value['subject'], 's6');
+											echo "<li><a href='/$subjectData[link]'>$subjectData[name]</a></li>";
+											$n++;
+											if($n>3){
+												break;
+											}
+										}
+									?>
+									<!-- <li><a href="">Mathematics</a></li>
+									<li><a href="<?php echo get_file("papers/p6/english") ?>">English</a></li>
+									<li><a href="<?php echo get_file("papers/p6/ikinyarwanda") ?>">Ikinyarwanda</a></li>
+									<li><a href="<?php echo get_file("papers/p6") ?>">Science and Elementary Technology</a></li>
+									<li><a href="<?php echo get_file("papers/p6") ?>">Social Studies</a></li> -->
 									<li><a class="mm-view-more" href="<?php echo get_file("papers/p6") ?>">View more →</a></li>
 								</ul>
 							</span>							
 						</div>
 					
-						<div class="col-md-3">
+						<div class="col-md-3">							
 							<span class="categories-list">
 								<ul>
-									 <span>Senior 3</span>
-										<li>Mathematics</li>
-										<li>Physics</li>
-										<li>Geography</li>
-										<li>History</li>
-										<li>Entrepreneurship</li>
-										<li><a class="mm-view-more" href="<?php echo get_file("papers/s3") ?>">View more →</a></li>
+									<span>Senior 3</span>
+									<?php
+										//get promoted subjects in s3
+										$s3_subjects = menu_promoted_subjects('s3');
+										$n = 0;
+										foreach ($s3_subjects as $key => $value) {
+											$subjectData = get_subject($value['subject'], 's3');
+											echo "<li><a href='/$subjectData[link]'>$subjectData[name]</a></li>";
+											$n++;
+											if($n>3){
+												break;
+											}
+										}
+									?>
+									<li><a class="mm-view-more" href="<?php echo get_file("papers/s3") ?>">View more →</a></li>
 								</ul>
 							</span>							
 						</div>
@@ -93,11 +114,24 @@
 							<span class="categories-list">
 								<ul>
 									<span>Senior 6</span>
-									<li>Mathematics</li>
+									<?php
+										//get promoted subjects in s6
+										$s6_subjects = menu_promoted_subjects('s6');
+										$n = 0;
+										foreach ($s6_subjects as $key => $value) {
+											$subjectData = get_subject($value['subject'], 's6');
+											echo "<li><a href='/$subjectData[link]'>$subjectData[name]</a></li>";
+											$n++;
+											if($n>3){
+												break;
+											}
+										}
+									?>
+									<!-- <li>Mathematics</li>
 									<li>Physics</li>
 									<li>Geography</li>
 									<li>History</li>
-									<li>Entrepreneurship</li>
+									<li>Entrepreneurship</li> -->
 								   	<li><a class="mm-view-more" href="<?php echo get_file("papers/s6") ?>">View more →</a></li>
 								</ul>
 							</span>
@@ -135,11 +169,10 @@
 	?>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="pull-right mt-2 mb-3">
+				<div class="pull-right mt-2 mb-3" style="z-index: 1">
 					<form method="GET" action="/search">
 						<div class="input-group">
 						  	<input type="text" max="30" min="1" class="form-control" name='q' value="<?php echo retain_input('GET', 'q'); ?>" required="required">
-						  	<!-- <input type="hidden" name='type' value="search"> -->
 						  	<div class="input-group-append">
 						    	<button class="btn btn-primary" type="submit">Search</button>
 							</div>
