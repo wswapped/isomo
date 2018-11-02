@@ -51,10 +51,24 @@
                       $paper_type = $_GET['type']??"";
                       $papers_conf = array('ne'=>'national_exams', 'dte'=>'driving_exam', 'tr'=>'traffic_rules');
 
+                      //check if there is set category or if we can load all categories
+                      if(!empty($papers_conf[$paper_type])){
+                        $paper_cat = $papers_conf[$paper_type];
+                        $cat_papers = category_papers($paper_cat);
+                        $paper_cat_name = ucfirst(str_ireplace("_", " ", $paper_cat));
+                      }else{
+                        //list all papers
+                        $paper_cat_name = 'All Papers';
+                        //get cats
+                        $cats = get_paper_types();
+                        $cat_papers = array();
 
-                      $paper_cat = $papers_conf[$paper_type];
-                      $cat_papers = category_papers($paper_cat);
-                      $paper_cat_name = ucfirst(str_ireplace("_", " ", $paper_cat));
+                        foreach ($cats as $key => $cat) {
+                          $cat_papers = array_merge($cat_papers, category_papers($cat['name']));
+                        }
+                      }
+
+                      
 
                     ?>
                     <div class="panel-heading"><h3><?php echo $paper_cat_name; ?></h3></div>

@@ -106,82 +106,32 @@
 								</div>
 								<div class="panel-body">
 									<?php
-										// $query = $db->query("SELECT * FROM papers P JOIN subject_type T ON T.id = P.type")
+										$cats = get_paper_types();
+				                        $cat_papers = array();
+				                        foreach ($cats as $key => $cat) {
+				                          ?>
+				                          	<div class="media">
+												<div class="media-left">
+													<a href="papers?type=<?=$cat['sname']?>">
+														<span class="icon-folder icons" style="font-size:2em;"></span>
+													</a>
+												</div>
+												<div class="media-body">
+												  <h5 class="media-heading"><?=$cat['pname']?></h5>
+													<div class="progress progress-mini">
+													  <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+														<span class="sr-only">60% Complete</span>
+													  </div>
+													</div>
+												</div>
+								  			</div>
+				                          <?php
+				                        }
 									?>
-									
-								  <div class="media">
-									<div class="media-left">
-										<span class="icon-folder icons" style="font-size:2em;"></span>
-									</div>
-									<div class="media-body">
-									  <h5 class="media-heading">Document Handling</h5>
-										<div class="progress progress-mini">
-										  <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-											<span class="sr-only">60% Complete</span>
-										  </div>
-										</div>
-									</div>
-								  </div>
-
-								  <div class="media">
-									<div class="media-left">
-										<span class="icon-pie-chart icons" style="font-size:2em;"></span>
-									</div>
-									<div class="media-body">
-									  <h5 class="media-heading">UI/UX Development</h5>
-										<div class="progress progress-mini">
-										  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100" style="width: 19%;">
-											<span class="sr-only">60% Complete</span>
-										  </div>
-										</div>
-									</div>
-								  </div>
-
-								  <div class="media">
-									<div class="media-left">
-										<span class="icon-energy icons" style="font-size:2em;"></span>
-									</div>
-									<div class="media-body">
-									  <h5 class="media-heading">Server Optimation</h5>
-										<div class="progress progress-mini">
-										  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
-											<span class="sr-only">60% Complete</span>
-										  </div>
-										</div>
-									</div>
-								  </div>
-
-								  <div class="media">
-									<div class="media-left">
-										<span class="icon-user icons" style="font-size:2em;"></span>
-									</div>
-									<div class="media-body">
-									  <h5 class="media-heading">User Status</h5>
-										<div class="progress progress-mini">
-										  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%;">
-											<span class="sr-only">60% Complete</span>
-										  </div>
-										</div>
-									</div>
-								  </div>
-
-								   <div class="media">
-									<div class="media-left">
-										<span class="icon-fire icons" style="font-size:2em;"></span>
-									</div>
-									<div class="media-body">
-									  <h5 class="media-heading">Firewall Status</h5>
-										<div class="progress progress-mini">
-										  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-											<span class="sr-only">60% Complete</span>
-										  </div>
-										</div>
-									</div>
-								  </div>
 								</div>
 								<div class="panel-footer bg-white border-none">
 									<center>
-									  <input type="button" value="download as pdf" class="btn btn-danger box-shadow-none"/>
+										<a href="papers" class="btn btn-danger box-shadow-none">All papers</a>
 									</center>
 								</div>
 							  </div>
