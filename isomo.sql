@@ -2,8 +2,8 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 20, 2018 at 11:03 AM
+-- Host: localhost
+-- Generation Time: Nov 02, 2018 at 08:21 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -75,7 +75,8 @@ INSERT INTO `answers` (`id`, `paperId`, `file`, `date`) VALUES
 (20, 32, 'answers/1526644095.html', '2018-05-18 11:48:15'),
 (21, 33, 'answers/1526716328.html', '2018-05-19 07:52:08'),
 (22, 34, 'answers/1526716921.html', '2018-05-19 08:02:01'),
-(23, 35, 'answers/1526719338.html', '2018-05-19 08:42:19');
+(23, 35, 'answers/1526719338.html', '2018-05-19 08:42:19'),
+(24, 36, 'answers/1530891484.html', '2018-07-06 15:38:04');
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,11 @@ CREATE TABLE `buy_requests` (
 
 INSERT INTO `buy_requests` (`id`, `user`, `phone`, `answer`, `price`, `date`, `device`, `status`) VALUES
 (1, 42, '121212', 19, 200, '2018-05-20 08:59:10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending'),
-(2, 42, '121212', 19, 200, '2018-05-20 09:00:03', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending');
+(2, 42, '121212', 19, 200, '2018-05-20 09:00:03', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending'),
+(3, 42, '0782163537', 20, 200, '2018-05-22 09:28:47', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending'),
+(4, 42, '9211212121', 22, 200, '2018-05-22 09:37:10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending'),
+(5, 42, '0784762982', 14, 200, '2018-05-22 11:35:19', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36', 'pending'),
+(6, 43, '784848236', 19, 200, '2018-07-08 02:53:24', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 'pending');
 
 -- --------------------------------------------------------
 
@@ -151,6 +156,32 @@ INSERT INTO `levels` (`name`, `printname`, `short_intro`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `menu_promoted_subjects`
+--
+
+CREATE TABLE `menu_promoted_subjects` (
+  `id` int(11) NOT NULL,
+  `subject` int(11) NOT NULL,
+  `level` varchar(32) NOT NULL,
+  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `archive` enum('no','yes') NOT NULL DEFAULT 'no',
+  `archiveDate` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Lists the subjects to promote on the menu';
+
+--
+-- Dumping data for table `menu_promoted_subjects`
+--
+
+INSERT INTO `menu_promoted_subjects` (`id`, `subject`, `level`, `createdDate`, `archive`, `archiveDate`) VALUES
+(1, 1, 'P6', '2018-07-08 04:53:03', 'no', NULL),
+(2, 1, 'S3', '2018-07-08 04:53:03', 'no', NULL),
+(3, 1, 'S6', '2018-07-08 04:53:03', 'no', NULL),
+(4, 2, 'S3', '2018-07-08 04:53:03', 'no', NULL),
+(5, 2, 'S6', '2018-07-08 04:53:03', 'no', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `papers`
 --
 
@@ -178,7 +209,7 @@ INSERT INTO `papers` (`id`, `name`, `subject`, `level`, `file`, `year`, `done_da
 (9, 'S3 Mathematics 2019', 2, 'S3', 'papers/1526293024.html', 2019, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
 (10, 'Ikizami', 5, '', 'papers/1526293024.html', 0, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
 (11, 'Ikizami 01', 5, NULL, 'papers/1526293024.html', 0, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
-(13, ' les rÃ¨gles de circulation', 8, NULL, 'papers/1526293024.html', NULL, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
+(13, 'Les regles de circulation', 8, NULL, 'papers/1526293024.html', NULL, NULL, NULL, '2018-05-22 08:11:52', 'no', NULL, NULL),
 (14, 'Hands', 4, NULL, 'papers/1526293024.html', NULL, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
 (15, 'Hands', 4, NULL, 'papers/1526293024.html', NULL, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
 (16, 'Hands', 4, NULL, 'papers/1526293024.html', NULL, NULL, NULL, '2018-05-14 11:09:47', 'no', NULL, NULL),
@@ -199,7 +230,8 @@ INSERT INTO `papers` (`id`, `name`, `subject`, `level`, `file`, `year`, `done_da
 (32, 'PROVISION DRIVING TEST', 3, NULL, 'papers/1526644095.html', NULL, NULL, NULL, '2018-05-19 08:12:21', 'no', NULL, NULL),
 (33, 'S3 Mathematics 1999', 2, 'S3', 'papers/1526716328.html', 1999, NULL, NULL, '2018-05-19 07:52:08', 'no', NULL, NULL),
 (34, 'Ikizami 05', 5, NULL, 'papers/1526716921.html', NULL, NULL, NULL, '2018-05-19 08:02:01', 'no', NULL, NULL),
-(35, 'Soma amategeko y\'umuhanda', 8, NULL, 'papers/1526719338.html', NULL, NULL, NULL, '2018-05-19 08:42:18', 'no', NULL, NULL);
+(35, 'Soma amategeko y\'umuhanda', 8, NULL, 'papers/1526719338.html', NULL, NULL, NULL, '2018-05-19 08:42:18', 'no', NULL, NULL),
+(36, 'P6 Social Studies 2017', 4, 'P6', 'papers/1530891484.html', 2017, NULL, NULL, '2018-07-06 15:38:04', 'no', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -260,6 +292,7 @@ INSERT INTO `subject_levels` (`id`, `subject`, `level`) VALUES
 CREATE TABLE `subject_type` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
+  `sname` varchar(32) NOT NULL COMMENT 'Short slug name',
   `description` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -267,10 +300,30 @@ CREATE TABLE `subject_type` (
 -- Dumping data for table `subject_type`
 --
 
-INSERT INTO `subject_type` (`id`, `name`, `description`) VALUES
-(1, 'national_exams', 'For academics, from primary to secondary school'),
-(2, 'driving_exam', 'Driving theory exam'),
-(3, 'traffic_rules', 'traffic rules');
+INSERT INTO `subject_type` (`id`, `name`, `sname`, `description`) VALUES
+(1, 'national_exams', 'ne', 'For academics, from primary to secondary school'),
+(2, 'driving_exam', 'de', 'Driving theory exam'),
+(3, 'traffic_rules', 'tr', 'traffic rules');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscribers`
+--
+
+CREATE TABLE `subscribers` (
+  `id` int(11) NOT NULL,
+  `email` varchar(2048) NOT NULL,
+  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `stopDate` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subscribers`
+--
+
+INSERT INTO `subscribers` (`id`, `email`, `createdDate`, `stopDate`) VALUES
+(1, 'dasd@dsada.dad', '2018-07-03 23:08:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -339,7 +392,8 @@ INSERT INTO `users` (`id`, `name`, `username`, `phone`, `email`, `gender`, `dob`
 (39, 'Insibika', 'inka', '', 'placide@edorica.com', 'male', '121', '', '2018-05-15 23:47:35', 'no', NULL, NULL),
 (40, 'isomo', 'isomo', '12121', 'isom@igihe.com', 'female', '121211', '$2y$10$lrmNXg1XPspG4ZsFlisbt.hV/tvW5xSOI6ZdvgS9RyZlHMKVaos7W', '2018-05-15 23:49:37', 'no', NULL, NULL),
 (41, 'Placide', 'placidelunis', '', 'placidelunis@gmail.com', 'male', '1990', '$2y$10$1wAJyw142FXmdKNs345.Deyi4r/PUEn8pRlD92inTQ.TU0COO326m', '2018-05-16 08:46:17', 'no', NULL, NULL),
-(42, 'placide', '12', '', '12@me.com', 'male', '1998', '$2y$10$Q0rBql8Xn7XY0qUMh6fEqub0/Te7PeT2ce4l3kUROSmb.7jnhkCqe', '2018-05-16 08:47:37', 'no', NULL, NULL);
+(42, 'placide', '12', '', '12@me.com', 'male', '1998', '$2y$10$Q0rBql8Xn7XY0qUMh6fEqub0/Te7PeT2ce4l3kUROSmb.7jnhkCqe', '2018-05-16 08:47:37', 'no', NULL, NULL),
+(43, 'MUHIRWA Clement', 'placidelunis@gmail.com', '784848236', 'muhirwaclement@gmail.com', 'male', '', '$2y$10$2LRYdqLiwrMuhmq.l2soJ.6Z3Rvft84Qf8Vm1nR.jpOMKKVHTqyr.', '2018-07-06 15:41:34', 'no', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -376,6 +430,14 @@ ALTER TABLE `levels`
   ADD PRIMARY KEY (`name`);
 
 --
+-- Indexes for table `menu_promoted_subjects`
+--
+ALTER TABLE `menu_promoted_subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `subject` (`subject`),
+  ADD KEY `level-menu` (`level`);
+
+--
 -- Indexes for table `papers`
 --
 ALTER TABLE `papers`
@@ -400,6 +462,12 @@ ALTER TABLE `subject_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `subscribers`
+--
+ALTER TABLE `subscribers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -419,13 +487,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `buy_requests`
 --
 ALTER TABLE `buy_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -434,10 +502,16 @@ ALTER TABLE `contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `menu_promoted_subjects`
+--
+ALTER TABLE `menu_promoted_subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `papers`
 --
 ALTER TABLE `papers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `subjects`
@@ -458,10 +532,27 @@ ALTER TABLE `subject_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `subscribers`
+--
+ALTER TABLE `subscribers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `menu_promoted_subjects`
+--
+ALTER TABLE `menu_promoted_subjects`
+  ADD CONSTRAINT `level-menu` FOREIGN KEY (`level`) REFERENCES `levels` (`name`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `menu_promoted_subjects_ibfk_1` FOREIGN KEY (`subject`) REFERENCES `subjects` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

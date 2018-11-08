@@ -59,7 +59,11 @@
 		$level = $db->real_escape_string($level);
 
 		$query = $db->query("SELECT * FROM menu_promoted_subjects WHERE level LIKE \"%$level%\" AND archive = 'no' ") or trigger_error($db->error);
-		$data = $query->fetch_all(MYSQLI_ASSOC);
+		$data = array();
+
+		while ($t = $query->fetch_assoc()) {
+			$data[] = $t;
+		}
 		return $data;
 	}
 
